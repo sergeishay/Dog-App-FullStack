@@ -11,7 +11,8 @@ const userSchema = new Schema({
     aboutMe: String,
     userPicture  : String,
     radius: Number,
-    addres: String
+    userLat: Number,
+    userLon: Number
 })
 
 
