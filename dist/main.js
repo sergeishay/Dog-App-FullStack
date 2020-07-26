@@ -61,10 +61,25 @@ const initMap = () => {
             content: content
         })
 
-        marker.addListener('click', function() {
+        marker.addListener('click', function () {
             infowindow.open(marker.get("map"), marker);
         });
     }
 }
 
 loadPage();
+
+const chatForm = $("#chat-form")
+
+const socket = io()
+
+socket.on('messege', messege => {
+    console.log(messege)
+})
+
+$("#btn").on('click', function(e){
+    e.preventDefault()
+    socket.emit('chat-messege', $("input").val())
+    $("input").val('')
+    return false
+    })
