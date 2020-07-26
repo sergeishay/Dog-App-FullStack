@@ -1,7 +1,5 @@
-const apiManager = new APIManager();
-const renderer = new Renderer();
-
-const initMap = () => {
+function initMap() {
+    const apiManager = new APIManager()
 
     var map = new google.maps.Map(document.getElementById('map'), {
         streetViewControl: false,
@@ -15,6 +13,7 @@ const initMap = () => {
         zoom: 16,
         center: new google.maps.LatLng(apiManager.data.mainUser.lat, apiManager.data.mainUser.lon)
     });
+
 
     const markerArr = []
     const contentArr = []
@@ -34,26 +33,26 @@ const initMap = () => {
             '<div class="iw-content">' +
             `<div class="iw-subTitle">${apiManager.data.users[i].dog.breed}</div>` +
             `<p>${apiManager.data.users[i].dog.toy}<br>${apiManager.data.users[i].dog.treat}</p>` +
+
             '<button>Profile</button>' +
             '</div>' +
             '<div class="iw-bottom-gradient"></div>' +
             '</div>';
-        markerArr.push([marker])
-        contentArr.push([contentString])
 
+        markerArr.push(marker)
+        contentArr.push(contentString)
     }
-    for (let i = 0; i < markerArr.length; i++) {
-        creatContent(markerArr[i][0], contentArr[i][0])
-        
-    }
+    console.log(markerArr)
 
-    function creatContent(marker, content) {
-        let infowindow = new google.maps.InfoWindow({
-            content: content
-        })
 
-        marker.addListener('click', function () {
-            infowindow.open(marker.get("map"), marker);
-        });
-    }
+    // let infowindow = new google.maps.InfoWindow({
+    //     content: contentString
+    // })
+
+    // google.maps.event.addListener(marker, 'click', (function (marker, content, infowindow) {
+    //     return function () {
+    //         infowindow.setContent(content);
+    //         infowindow.open(map, marker);
+    //     }
+    // })(marker, contentString, infowindow))
 }
