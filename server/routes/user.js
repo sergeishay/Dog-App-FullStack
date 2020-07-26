@@ -28,6 +28,10 @@ router.get('/user/:userId', function (req, res) {
     })
 })
 
+router.get('/user/:userId/dogs', function (req, res) {
+    let { userId } = req.params
+    User.findById(userId).populate("dogs").then(user => res.send(user.dogs));
+})
 
 router.post('/user', function (req, res) {
     const { user } = req.body
@@ -49,7 +53,7 @@ router.put('/user/:userId', async function (req, res) {
 
 router.delete('/user/:userId' , async function(req , res ){
     const { userId } = req.params
-    Person.findById(userId, function (err, user) {
+    User.findById(userId, function (err, user) {
         user.remove(function (err) {
             console.log(err) 
         })
