@@ -1,6 +1,15 @@
 const apiManager = new APIManager();
 const renderer = new Renderer();
 
+const loadPage = () => {
+    if (apiManager.checkAuthState()) {
+        renderer.renderAuthNav(apiManager.data.mainUser);
+    } else {
+        renderer.renderNonAuthNav("");
+    }
+
+}
+
 const initMap = () => {
 
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -44,7 +53,7 @@ const initMap = () => {
     }
     for (let i = 0; i < markerArr.length; i++) {
         creatContent(markerArr[i][0], contentArr[i][0])
-        
+
     }
 
     function creatContent(marker, content) {
@@ -52,8 +61,10 @@ const initMap = () => {
             content: content
         })
 
-        marker.addListener('click', function () {
+        marker.addListener('click', function() {
             infowindow.open(marker.get("map"), marker);
         });
     }
 }
+
+loadPage();
