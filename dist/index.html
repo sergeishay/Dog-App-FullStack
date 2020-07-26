@@ -13,40 +13,12 @@
 
 <body>
     <!-- NAV BAR------------------------------------------------------------- -->
-    <nav>
-        <div class="nav-wrapper">
-            <a id="logo-container" class="brand-logo center">Puppy Pals</a>
-            <a data-activates="mobile-demo" class="button-collapse"><i class="material-icons menu">menu</i></a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a class='profile'>My Profile</a></li>
-                <li><a class='map'>Map</a></li>
-                <li><a class='events'>Events</a></li>
-                <li><a class='about'>About</a></li>
-                <li><a class='logout'>Logout</a></li>
-            </ul>
-            <ul id="mobile-demo" class="side-nav">
-                <li>
-                    <div class="user-view">
-                        <a><img class="circle side-picture" src="assets/download.jpg"></a>
-                        <a><span class="white-text">USER NAME</span></a>
-                    </div>
-                </li>
-                <li><a class="profile waves-effect ">My Profile</a></li>
-                <li><a class="map waves-effect">Map</a></li>
-                <li><a class="events waves-effect">Events</a></li>
-                <div class="divider"></div>
-                <li><a class="about waves-effect">About Us</a></li>
-                <li><a class="logout waves-effect">Logout</a></li>
-            </ul>
-        </div>
-    </nav>
+    <div id='navbar-container'>
 
+    </div>
     <!--MAIN CONTENT----------------------------------------------------- -->
     <div id='main-container'>
         <!-- HANDLE BARS HERE-------------------------------------------- -->
-
-
-
 
         <div id="map"></div>
     </div>
@@ -62,14 +34,63 @@
     <script src="apiManager.js"></script>
     <script src="main.js"></script>
 
+    <!-- NAV BAR Authenticate------------------------------------------------------------- -->
+    <script id="authNav-template" type="text/x-handlebars-template">
+    <nav>
+        <div class="nav-wrapper">
+            <a id="logo-container" class="brand-logo center">Puppy Pals</a>
+            <a data-activates="mobile-demo" class="button-collapse"><i class="material-icons menu">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a class='profile'>My Profile</a></li>
+                <li><a class='map'>Map</a></li>
+                <li><a class='events'>Events</a></li>
+                <li><a class='about'>About</a></li>
+                <li><a class='logout'>Logout</a></li>
+            </ul>
+            <ul id="mobile-demo" class="side-nav">
+                <li>
+                    <div class="user-view">
+                        <a><img class="circle side-picture" src="{{userPicture}}"></a>
+                        <a><span class="white-text">{{firstName}} {{lastName}}</span></a>
+                    </div>
+                </li>
+                <li><a class="profile waves-effect ">My Profile</a></li>
+                <li><a class="map waves-effect">Map</a></li>
+                <li><a class="events waves-effect">Events</a></li>
+                <div class="divider"></div>
+                <li><a class="about waves-effect">About Us</a></li>
+                <li><a class="logout waves-effect">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+ </script>
 
+    <!-- NAV BAR Not Authenticated------------------------------------------------------------- -->
+    <script id="nonAuthNav-template" type="text/x-handlebars-template">
+    <nav>
+    <div class="nav-wrapper">
+        <a id="logo-container" class="brand-logo center">Puppy Pals</a>
+        <a data-activates="mobile-demo" class="button-collapse"><i class="material-icons menu">menu</i></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a class='profile'>Login</a></li>
+            <li><a class='map'>Sign-up</a></li>
+        </ul>
+        <ul id="mobile-demo" class="side-nav">
+            <li><a class="map waves-effect">Login</a></li>
+            <li><a class="events waves-effect">Sign-up</a></li>
+            <div class="divider"></div>
+            <li><a class="about waves-effect">About Us</a></li>
+        </ul>
+    </div>
+</nav>
+</script>
     <!-- LOGIN PAGE/REGISTRATION ----------------------------------------------------------------------------------------->
-    <!-- <div class="container white z-depth-2">
+    <script id="login-template" type="text/x-handlebars-template">
+    <div class="container white z-depth-2">
         <ul class="tabs teal">
             <li class="tab col s3"><a class="white-text active" href="#login">login</a></li>
             <li class="tab col s3"><a class="white-text" href="#register">register</a></li>
         </ul>
-
         <div id="login" class="col s12">
             <form class="col s12">
                 <div class="form-container">
@@ -124,10 +145,10 @@
                 </div>
             </form>
         </div>
-    </div> -->
-
+    </div>
+    </script>
     <!-- PROFILE PAGE-------------------------------------------------------------------------------------------------- -->
-    <!-- <script>
+    <script id="profile-template" type="text/x-handlebars-template">
     <div class='container'>
         <div class="card-panel grey lighten-4">
             <a><img class="profile-picture circle" src="assets/person.png"/></a>
@@ -177,10 +198,11 @@
             </div>
         </div>
     </div>
-    </script> -->
+    </script>
 
     <!-- EVENTS PAGE ----------------------------------------------------------------------------------------------------->
-    <!-- <div class='container'>
+    <script id="events-template" type="text/x-handlebars-template">
+    <div class='container'>
         <ul class="collapsible">
             <li>
                 <div class="collapsible-header"><i class="material-icons">filter_drama</i>FIRST EVENT TITLE</div>
@@ -201,10 +223,11 @@
             </li>
         </ul>
         <a class="event-create waves-effect waves-light btn-large right">Submit</a>
-    </div> -->
-
+    </div>
+    </script>
     <!-- EVENTS FORM PAGE----------------------------------------------------------------------------------------------------->
-    <!-- <div id='container'>
+    <script id="eventsForm-template" type="text/x-handlebars-template">
+    <div id='container'>
         <h5>Create your event</h5>
         <div class="row">
             <div class="input-field col s12">
@@ -263,8 +286,9 @@
         </div>
         </form>
         <a class="event-submit waves-effect waves-light btn-large right">Submit</a>
-    </div> -->
-    
+    </div>
+    </script>
+
     <script>
         $(".button-collapse").sideNav()
     </script>
