@@ -9,14 +9,11 @@ class Renderer {
     }
 }
 
-{
+dogInfo = {
     user: {
         _id: 12345,
-        location:
-            {
-                lat: 32.0784,
-                lng: 34.815
-            },
+        lat: 32.0784,
+        lon: 34.815,
         dog: {
             name: Lucky,
             breed: husky,
@@ -25,5 +22,8 @@ class Renderer {
             treat:
         }
 
+    },
+    otherUsers: {
+        
     }
 }
