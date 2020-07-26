@@ -58,10 +58,11 @@
     <script src="./jquery/dist/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
     <script src="renderer.js"></script>
+    <script src="apiManager.js"></script>
     <script src="main.js"></script>
-    <script async defer
+     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZAMd5ujixxcusvcP1f8SCsSVDcQaZp-o&callback=initMap">
-        </script>
+        </script> 
 
     <!-- LOGIN PAGE/REGISTRATION ----------------------------------------------------------------------------------------->
     <!-- <div class="container white z-depth-2">
@@ -264,94 +265,6 @@
         </form>
         <a class="event-submit waves-effect waves-light btn-large right">Submit</a>
     </div> -->
-
-    <!-- MAP PAGE------------------------------------------------------------------------------------------------------ -->
-    <script id="map-template" type="text/x-handlebars-template">
-        function initMap() {
-            var userLocation = {
-                lat: {{user.lat}},
-                lng: {{user.lon}}
-            };
-            
-            var map = new google.maps.Map(document.getElementById('map'), {
-                streetViewControl: false,
-                rotateControl: false,
-                fullscreenControl: false,
-                mapTypeControl: false,
-                zoomControl: true,
-                zoomControlOptions: {
-                    position: google.maps.ControlPosition.RIGHT_TOP
-                },
-                zoom: 16,
-                center: userLocation
-            })
-
-            var userContentString =
-                <div class=" iw-container">
-                    <div class="iw-title"><img src="{{user.dog.image}}" class="map-image" height="80" width="80">
-                        <div class="iw-name">{{user.dog.name}}</div>
-                    </div>
-                    <div class="iw-content">
-                        <div class="iw-subTitle">{{user.dog.breed}}</div>
-                        <p>{{user.dog.toy}}</p>
-                        <p>{{user.dog.treat}}</p>
-                        <button>Profile</button>
-                    </div>
-                    <div class="iw-bottom-gradient"></div>
-                </div>
-
-                var userInfoWindow = new google.maps.InfoWindow({
-                    content: userContentString
-                });
-    
-                var userMarker = new google.maps.Marker({
-                    position: userLocation,
-                    map: map,
-                    title: 'Dog 1',
-                    icon: "assets/download1.png"
-                });
-    
-                userMarker.addListener('click', function () {
-                    userInfoWindow.open(map, userMarker);
-                });
-
-            {{#Each otherUser}}
-            var location{{_id}} = {
-                lat: {{lat}},
-                lng: {{lon}}
-            };
-
-            var string{{_id}} =
-            <div class=" iw-container">
-                <div class="iw-title"><img src="{{dog.image}}" class="map-image" height="80" width="80">
-                    <div class="iw-name">{{dog.name}}</div>
-                </div>
-                <div class="iw-content">
-                    <div class="iw-subTitle">{{dog.breed}}</div>
-                    <p>{{dog.toy}}</p>
-                    <p>{{dog.treat}}</p>
-                    <button>Profile</button>
-                </div>
-                <div class="iw-bottom-gradient"></div>
-            </div>
-
-            var infoWindow{{_id}} = new google.maps.InfoWindow({
-                content: string{{_id}}
-            });
-                
-            var marker{{_id}} = new google.maps.Marker({
-                position: location{{_id}},
-                map: map,
-                title: 'Dog 2',
-                icon: "assets/download1.png"
-            });
-            
-            marker{{_id}}.addListener('click', function () {
-                infoWindow{{_id}}.open(map, marker{{_id}});
-            });
-            {{/Each}}
-        }    
-    </script>
     
     <script>
         $(".button-collapse").sideNav()

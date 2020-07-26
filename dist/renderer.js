@@ -1,5 +1,5 @@
 class Renderer {
-    renderData = mapInfo => {
+    renderMap = mapInfo => {
         $('#map').empty()
         const source = $('#map-template').html()
         const template = Handlebars.compile(source)
