@@ -1,65 +1,54 @@
-const express = require('express');
-const path = require("path")
-const app = express();
-const mongoose = require('mongoose');
-const bodyParser = require("body-parser");
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
 const User = require('../models/User')
-const axios = require('axios');
 
-
-router.get('/users', function (req, res) {
-    User.find({}, function (err, users) {
-        res.send(users)
+router.get('/', function (req, res) {
+    User.find({}).exec(function (err, users) {
+        if (err) res.send(err)
+        else res.send(users)
     })
-        .catch(function (error) {
-            console.log(error)
+})
+
+router.get('/:userId', function (req, res) {
+    const { userId } = req.params
+    User.findById(userId).exec(function (err, user) {
+        if (err) res.send(err)
+        else res.send(user)
+    })
+})
+
+router.get('/:userId/dogs', function (req, res) {
+    const { userId } = req.params
+    User.findById(userId).populate("dogs")
+        .exec(function (err, user) {
+            if (err) res.send(err)
+            else res.send(user.dogs)
         })
-});
-
-router.get('/user/:userId', function (req, res) {
-    let { userId } = req.params
-    User.findById(userId).exec((err, user) => {
-        if (err) {
-            res.send(err)
-            console.log("Error")
-        }
-        res.send(user)
-    })
 })
 
-router.get('/user/:userId/dogs', function (req, res) {
-    let { userId } = req.params
-    User.findById(userId).populate("dogs").then(user => res.send(user.dogs));
-})
-
-router.post('/user', function (req, res) {
-    const { user } = req.body
-    const newUser = new User(user)
+router.post('/', function (req, res) {
+    const newUser = new User(req.body)
     newUser.save()
     res.send(newUser)
-});
+})
 
-
-router.put('/user/:userId', async function (req, res) {
+router.put('/:userId', function (req, res) {
     const { userId } = req.params
-    const { info } = req.body
-    let user = await User.findById(userId)
-    user = { ...user, ...info }
-    User.findByIdAndUpdate(userId, user, { new: true }).exec().then(updatedUser => {
-        res.send(updatedUser)
-    })
-});
-
-router.delete('/user/:userId' , async function(req , res ){
-    const { userId } = req.params
-    User.findById(userId, function (err, user) {
-        user.remove(function (err) {
-            console.log(err) 
+    const info = req.body
+    let user = User.findById(userId).exec()
+    User.findByIdAndUpdate(userId, { ...user, ...info }, { new: true })
+        .exec(function (err, user) {
+            if (err) res.send(err)
+            else res.send(user)
         })
+})
+
+router.delete('/:userId', function (req, res) {
+    const { userId } = req.params
+    User.findByIdAndDelete(userId, function (err, user) {
+        if (err) res.send(err)
+        else res.send(`${user.firstName} ${user.lastName} has deleted successfully`)
     })
 })
 
-
-
-module.exports = router;
+module.exports = router

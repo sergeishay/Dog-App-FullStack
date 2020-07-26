@@ -7,7 +7,7 @@ const dog = require('./server/routes/dog');
 const mongoose = require('mongoose');
 const bodyParser = require("body-parser");
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/dog-app', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost/dog-app', { useNewUrlParser: true });
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use(express.static(path.join(__dirname, 'node_modules')));
 app.use(bodyParser.json())
@@ -21,5 +21,5 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // app.use('/dogs', dog);
 
 
-const port = process.env.PORT || 3000;
+const port = 3000;
 app.listen(port, () => console.log(`Running server on port ${ port }`));
