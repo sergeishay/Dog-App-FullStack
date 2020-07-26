@@ -3,12 +3,12 @@ class Renderer {
         this.makeHandlebar("#map-template", "#map", mapInfo)
     }
 
-    renderAuthNav = user =>{
+    renderAuthNav = user => {
         this.makeHandlebar("#authNav-template", '#navbar-container', user)
     }
 
-    renderNonAuthNav = () => {
-        this.makeHandlebar("#authNav-template", '#navbar-container', undefined)
+    renderNonAuthNav = (string) => {
+        this.makeHandlebar("#nonAuthNav-template", '#navbar-container', string)
     }
 }
 Renderer.prototype.makeHandlebar = (templateId, containerId, data) => {
