@@ -73,6 +73,13 @@
             </div>
         </nav>
     </script>
+    <!-- HOME PAGE -->
+    <script id="home-template" type="text/x-handlebars-template">
+    <div>
+        <img src="http://www.apimages.com/Images/Ap_Creative_Stock_Header.jpg" alt="">
+        <button class="home-btn">Get Started!</button>
+    </div>
+    </script>
     <!-- LOGIN PAGE/REGISTRATION ----------------------------------------------------------------------------------------->
     <script id="login-template" type="text/x-handlebars-template">
         <div class="container white z-depth-2">
@@ -138,28 +145,30 @@
     <script id="profile-template" type="text/x-handlebars-template">
         <div class='container'>
             <div class="card-panel grey lighten-4">
-                <a><img class="profile-picture circle" src="assets/person.png" /></a>
-                <div class='profile-name'>Jane Doe</div>
+                <a><img class="profile-picture circle" src="{{userPicture}}" /></a>
+                <div class='profile-name'>{{firstName}} {{lastName}}</div>
             </div>
             <div class="profile-container row">
                 <div class="col s12 m6 l6">
                     <div class="profile-card card">
-                        <div class='profile-location'><i class="material-icons">location_on</i>Tel Aviv, Israel</div>
-                        <p class='profile-aboutme'>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                        <div class='profile-location'><i class="material-icons">location_on</i>{{lat}} {{lon}}</div>
+                        <p class='profile-aboutme'>{{aboutMe}}</p>
                     </div>
                 </div>
+                {{#each dogs}}
                 <div class="col s12 m6 l6">
                     <div class="profile-card card">
-                        <a><img class="profile-dog-picture circle" src="assets/download.jpg" /></a>
-                        <div class='profile-dog-name'>Lucky</div>
+                        <a><img class="profile-dog-picture circle" src="{{dogPicture}}" /></a>
+                        <div class='profile-dog-name'>{{dogName}}</div>
                         <div class='profile-dog-text'>
-                            <div class='profile-breed'><i class="fas fa-paw"></i>&nbsp&nbsp&nbsp Golden Retriever</div>
-                            <div class='profile-weight'><i class="fas fa-weight"></i>&nbsp&nbsp&nbsp 30kg</div>
-                            <div class='profile-toy'><i class="fas fa-shapes"></i>&nbsp&nbsp&nbsp Squeaky ball</div>
-                            <div class='profile-treat'><i class="fas fa-bone"></i>&nbsp&nbsp&nbsp Milk bone</div>
+                            <div class='profile-breed'><i class="fas fa-paw"></i>&nbsp&nbsp&nbsp {{breed}}</div>
+                            <div class='profile-weight'><i class="fas fa-weight"></i>&nbsp&nbsp&nbsp {{weight}}</div>
+                            <div class='profile-toy'><i class="fas fa-shapes"></i>&nbsp&nbsp&nbsp {{favoriteToys}}</div>
+                            <div class='profile-treat'><i class="fas fa-bone"></i>&nbsp&nbsp&nbsp {{favoriteTreats}}</div>
                         </div>
                     </div>
                 </div>
+                {{/each}}
             </div>
         </div>
         <div id="body">
@@ -189,22 +198,21 @@
     <script id="events-template" type="text/x-handlebars-template">
         <div class='container'>
             <ul class="collapsible">
+                {{#each events}}
                 <li>
                     <div class="collapsible-header"><i class="material-icons">filter_drama</i>FIRST EVENT TITLE</div>
                     <div class="collapsible-body">
                         <div class="card-action right-align"><a class="event-add btn-floating btn-tiny waves-effect waves-light red"><i
                                 class="material-icons">add</i></a></div>
-                        <span>Lorem ipsum dolor sit amet.</span>
+                        <span>{{eventName}}</span>
+                        <span>{{startTime}}</span>
+                        <span>{{address}}</span>
+                        <span>{{endTime}}</span>
+                        <span>{{type}}</span>
+                        <span>{{description}}</span>
                     </div>
                 </li>
-                <li>
-                    <div class="collapsible-header"><i class="material-icons">place</i>SECOND EVENT TITLE</div>
-                    <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                </li>
-                <li>
-                    <div class="collapsible-header"><i class="material-icons">whatshot</i>THIRD EVENT TITLE</div>
-                    <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                </li>
+                {{/Each}}
             </ul>
             <a class="event-create waves-effect waves-light btn-large right">Submit</a>
         </div>
