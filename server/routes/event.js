@@ -1,48 +1,45 @@
 const express = require('express')
 const router = express.Router()
+const Events = require('../models/Event')
 
-const User = require('../models/User')
-const Dog = require('../models/Dog')
-const Event = require('../models/Event')
-
-router.get('/events', function (req, res) {
-    Event.find({}).exec(function (err, events) {
+router.get('/', function (req, res) {
+    Events.find({}).exec(function (err, events) {
         if (err) res.send(err)
         else res.send(events)
     })
 })
 
-router.get('/event/:eventId', function (req, res) {
+router.get('/:eventId', function (req, res) {
     const { eventId } = req.params
-    Event.findById(eventId).exec(function (err, event) {
+    Events.findById(eventId).exec(function (err, event) {
         if (err) res.send(err)
         else res.send(event)
     })
 })
 
-router.post('/event', function (req, res) {
-    const eventToSave = req.body
-    event = new Event(eventToSave)
+router.post('/', function (req, res) {
+    const event = new Events(req.body)
     event.save()
-    res.end()
+    res.send(event)
 })
 
-router.put('/event/:eventId', function (req, res) {
+router.put('/:eventId', function (req, res) {
     const { eventId } = req.params
-    const { info } = req.body
-    let event = Event.findById(eventId)
-    event = { ...event, ...info }
-    Event.findByIdAndUpdate(eventId, event, { new: true })
-        .then(updatedEvent => { res.send(updatedEvent) })
-})
-
-router.delete('/event/:eventId' , function(req , res ){
-    const { eventId } = req.params
-    Event.findById(eventId, function (err, event) {
-            event.remove(function (err) {
-            console.log(err) 
-        })
+    const info = req.body
+    let event = Events.findById(eventId).exec()
+    Events.findByIdAndUpdate(eventId, { ...event, ...info }, { new: true })
+    .exec(function (err, event) {
+        if (err) res.send(err)
+        else res.send(event)
     })
 })
 
-module.exports = router;
+router.delete('/:eventId', function (req, res) {
+    const { eventId } = req.params
+    Events.findByIdAndDelete(eventId, function (err, event) {
+        if (err) res.send(err) 
+        else res.send(`${event.eventName} has deleted successfully`) 
+    })
+})
+
+module.exports = router

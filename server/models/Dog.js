@@ -1,8 +1,7 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
-const Schema = mongoose.Schema;
-
-const DogsSchema = new Schema({
+const dogsSchema = new Schema({
     
     dogName: String,
     rating: Number,
@@ -11,9 +10,8 @@ const DogsSchema = new Schema({
     favoriteToys : [],
     favoriteTreats:[],
     dogPicture: String
-});
+})
 
 
-const Dogs = mongoose.model('Dogs', DogsSchema);
-
-module.exports = Dogs;
+const Dogs = mongoose.model('Dogs', dogsSchema)
+module.exports = Dogs
