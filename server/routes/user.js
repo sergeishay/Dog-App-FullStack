@@ -3,7 +3,7 @@ const router = express.Router()
 const User = require('../models/User')
 
 router.get('/', function (req, res) {
-    User.find({}).exec(function (err, users) {
+    User.find({}).populate("dogs").exec(function (err, users) {
         if (err) res.send(err)
         else res.send(users)
     })

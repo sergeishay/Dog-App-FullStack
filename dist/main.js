@@ -7,8 +7,47 @@ const loadPage = () => {
     } else {
         renderer.renderNonAuthNav("");
     }
-
+    renderer.renderLandingPage("")
 }
+
+$("#main-container").on("click", ".home-btn", () => {
+    renderer.renderLogin();
+});
+
+$("#main-container").on("click", ".login", () => {
+    renderer.renderLogin();
+});
+
+$("#main-container").on("click", ".register", () => {
+    renderer.renderRegister()
+});
+
+$("#main-container").on("click", ".register-btn", function() {
+    const firstName = $(this).siblings(".name").find("#register-first").val()
+    const lastName = $(this).siblings(".name").find("#register-last").val();
+    const email = $(this).siblings(".email").find("input").val();
+    const password = $(this).siblings(".password").find("input").val();
+    const user = { firstName, lastName, password, email };
+    apiManager.createNewUser(user);
+    localStorage.setItem("user", JSON.stringify(user));
+    loadPage();
+})
+
+$("#main-container").on("click", ".login-btn", function() {
+    const email = $(this).siblings(".email").find("input").val();
+    const password = $(this).siblings(".password").find("input").val();
+
+});
+
+$("#navbar-container").on("click", ".profile", () => {
+    renderer.renderProfile(apiManager.mainUser);
+});
+
+$("#navbar-container").on("click", ".map", async() => {
+    $("#main-container").empty();
+    await apiManager.getAllNearbyUsers();
+    initMap();
+});
 
 const initMap = () => {
 

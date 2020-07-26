@@ -73,24 +73,32 @@
             </div>
         </nav>
     </script>
+    <!-- HOME PAGE -->
+    <script id="home-template" type="text/x-handlebars-template">
+        <div>
+            <img src="http://www.apimages.com/Images/Ap_Creative_Stock_Header.jpg" alt="">
+            <button class="home-btn">Get Started!</button>
+        </div>
+    </script>
     <!-- LOGIN PAGE/REGISTRATION ----------------------------------------------------------------------------------------->
     <script id="login-template" type="text/x-handlebars-template">
         <div class="container white z-depth-2">
             <ul class="tabs teal">
-                <li class="tab col s3"><a class="white-text active" href="#login">login</a></li>
-                <li class="tab col s3"><a class="white-text" href="#register">register</a></li>
+                <li class="tab col s3"><a class="white-text active login" href="#login">login</a></li>
+                <li class="tab col s3"><a class="white-text register" href="#register">register</a></li>
             </ul>
+            <!-- Login page -------------------------------------------------------->
             <div id="login" class="col s12">
                 <form class="col s12">
                     <div class="form-container">
                         <h3 class="teal-text">Hello!</h3>
-                        <div class="row">
+                        <div class="row email">
                             <div class="login-input-field col s12">
                                 <input id="login-email" type="email" class="validate">
                                 <label for="email">Email</label>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row password">
                             <div class="login-input-field col s12">
                                 <input id="login-password" type="password" class="validate">
                                 <label for="password">Password</label>
@@ -101,14 +109,23 @@
                     </div>
                 </form>
             </div>
+        </div>
+    </script>
+    <script id="register-template" type="text/x-handlebars-template">
 
+        <!-- register page ------------------------------------------------------>
+        <div class="container white z-depth-2">
+            <ul class="tabs teal">
+                <li class="tab col s3"><a class="white-text login" href="#login">login</a></li>
+                <li class="tab col s3"><a class="white-text active register" href="#register">register</a></li>
+            </ul>
             <div id="register" class="col s12">
                 <form class="col s12">
                     <div class="form-container">
                         <h3 class="teal-text">Join Us!</h3>
-                        <div class="row">
+                        <div class="row name">
                             <div class="register-input-field col s6">
-                                <input id="register-fist" type="text" class="validate">
+                                <input id="register-first" type="text" class="validate">
                                 <label for="last_name">First Name</label>
                             </div>
                             <div class="register-input-field col s6">
@@ -116,13 +133,13 @@
                                 <label for="last">Last Name</label>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row email">
                             <div class="register-input-field col s12">
                                 <input id="register-email" type="email" class="validate">
                                 <label for="email">Email</label>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row password">
                             <div class="register-input-field col s12">
                                 <input id="register-password" type="password" class="validate">
                                 <label for="password">Password</label>
@@ -138,28 +155,30 @@
     <script id="profile-template" type="text/x-handlebars-template">
         <div class='container'>
             <div class="card-panel grey lighten-4">
-                <a><img class="profile-picture circle" src="assets/person.png" /></a>
-                <div class='profile-name'>Jane Doe</div>
+                <a><img class="profile-picture circle" src="{{userPicture}}" /></a>
+                <div class='profile-name'>{{firstName}} {{lastName}}</div>
             </div>
             <div class="profile-container row">
                 <div class="col s12 m6 l6">
                     <div class="profile-card card">
-                        <div class='profile-location'><i class="material-icons">location_on</i>Tel Aviv, Israel</div>
-                        <p class='profile-aboutme'>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                        <div class='profile-location'><i class="material-icons">location_on</i>{{lat}} {{lon}}</div>
+                        <p class='profile-aboutme'>{{aboutMe}}</p>
                     </div>
                 </div>
+                {{#each dogs}}
                 <div class="col s12 m6 l6">
                     <div class="profile-card card">
-                        <a><img class="profile-dog-picture circle" src="assets/download.jpg" /></a>
-                        <div class='profile-dog-name'>Lucky</div>
+                        <a><img class="profile-dog-picture circle" src="{{dogPicture}}" /></a>
+                        <div class='profile-dog-name'>{{dogName}}</div>
                         <div class='profile-dog-text'>
-                            <div class='profile-breed'><i class="fas fa-paw"></i>&nbsp&nbsp&nbsp Golden Retriever</div>
-                            <div class='profile-weight'><i class="fas fa-weight"></i>&nbsp&nbsp&nbsp 30kg</div>
-                            <div class='profile-toy'><i class="fas fa-shapes"></i>&nbsp&nbsp&nbsp Squeaky ball</div>
-                            <div class='profile-treat'><i class="fas fa-bone"></i>&nbsp&nbsp&nbsp Milk bone</div>
+                            <div class='profile-breed'><i class="fas fa-paw"></i>&nbsp&nbsp&nbsp {{breed}}</div>
+                            <div class='profile-weight'><i class="fas fa-weight"></i>&nbsp&nbsp&nbsp {{weight}}</div>
+                            <div class='profile-toy'><i class="fas fa-shapes"></i>&nbsp&nbsp&nbsp {{favoriteToys}}</div>
+                            <div class='profile-treat'><i class="fas fa-bone"></i>&nbsp&nbsp&nbsp {{favoriteTreats}}</div>
                         </div>
                     </div>
                 </div>
+                {{/each}}
             </div>
         </div>
         <div id="body">
@@ -189,22 +208,21 @@
     <script id="events-template" type="text/x-handlebars-template">
         <div class='container'>
             <ul class="collapsible">
+                {{#each events}}
                 <li>
                     <div class="collapsible-header"><i class="material-icons">filter_drama</i>FIRST EVENT TITLE</div>
                     <div class="collapsible-body">
                         <div class="card-action right-align"><a class="event-add btn-floating btn-tiny waves-effect waves-light red"><i
                                 class="material-icons">add</i></a></div>
-                        <span>Lorem ipsum dolor sit amet.</span>
+                        <span>{{eventName}}</span>
+                        <span>{{startTime}}</span>
+                        <span>{{address}}</span>
+                        <span>{{endTime}}</span>
+                        <span>{{type}}</span>
+                        <span>{{description}}</span>
                     </div>
                 </li>
-                <li>
-                    <div class="collapsible-header"><i class="material-icons">place</i>SECOND EVENT TITLE</div>
-                    <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                </li>
-                <li>
-                    <div class="collapsible-header"><i class="material-icons">whatshot</i>THIRD EVENT TITLE</div>
-                    <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                </li>
+                {{/Each}}
             </ul>
             <a class="event-create waves-effect waves-light btn-large right">Submit</a>
         </div>
@@ -273,9 +291,6 @@
         </div>
     </script>
 
-    <script>
-        $(".button-collapse").sideNav()
-    </script>
     <script src="./handlebars/dist/handlebars.js"></script>
     <script src="./jquery/dist/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
@@ -283,6 +298,10 @@
     <script src="renderer.js"></script>
     <script src="apiManager.js"></script>
     <script src="main.js"></script>
+
+    <script>
+        $(".button-collapse").sideNav()
+    </script>
 
 </body>
 

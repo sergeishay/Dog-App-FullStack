@@ -9,7 +9,8 @@ const dogsSchema = new Schema({
     dogOwner: [{type: Schema.Types.ObjectId, ref: 'User'}],
     favoriteToys : [],
     favoriteTreats:[],
-    dogPicture: String
+    dogPicture: String,
+    breed: String
 })
 
 

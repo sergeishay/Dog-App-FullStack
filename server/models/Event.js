@@ -6,13 +6,13 @@ const eventsSchema = new Schema({
     eventOwner: [{type: Schema.Types.ObjectId, ref: 'User'}],
     startTime: Number,
     endTime: Number,
-    eventLat: Number,
-    eventLon: Number,
     participations:[{type: Schema.Types.ObjectId, ref: 'Dogs'}],
     type: String,
     created: false,
     eventPicture: String,
-    description: String
+    description: String,
+    address: String
+
 })
 
 

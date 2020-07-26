@@ -13,12 +13,12 @@ app.use(express.static(path.join(__dirname, 'node_modules')));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
-// app.use('/user', user);
-// app.use('/users', user);
-// app.use('/event', event);
-// app.use('/events', event);
-// app.use('/dog', dog);
-// app.use('/dogs', dog);
+app.use('/user', user);
+app.use('/users', user);
+app.use('/event', event);
+app.use('/events', event);
+app.use('/dog', dog);
+app.use('/dogs', dog);
 
 
 const port = 3000;
