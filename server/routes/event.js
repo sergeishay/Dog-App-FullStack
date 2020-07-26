@@ -36,4 +36,13 @@ router.put('/event/:eventId', function (req, res) {
         .then(updatedEvent => { res.send(updatedEvent) })
 })
 
+router.delete('/event/:eventId' , function(req , res ){
+    const { eventId } = req.params
+    Event.findById(eventId, function (err, event) {
+            event.remove(function (err) {
+            console.log(err) 
+        })
+    })
+})
+
 module.exports = router;

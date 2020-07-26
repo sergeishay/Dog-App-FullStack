@@ -14,15 +14,6 @@ router.get('/dog/:dogId', function (req, res) {
     })
 })
 
-router.get('/dogs/:userId', function (req, res) {
-    const { userId } = req.params
-    User.findById(userId).populate("users")
-        .exec(function (err, user) {
-            if (err) res.send(err)
-            else res.send(user.dogs)
-        })
-})
-
 router.post('/dog/:userId', function (req, res) {
     const { userId } = req.params
     const dogToSave = req.body
@@ -38,7 +29,6 @@ router.post('/dog/:userId', function (req, res) {
     })
 })
 
-
 router.put('/dog/:dogId', function (req, res) {
     const { dogId } = req.params
     const { info } = req.body
@@ -48,6 +38,15 @@ router.put('/dog/:dogId', function (req, res) {
         .then(updatedDog => {
             res.send(updatedDog)
         })
+})
+
+router.delete('/dog/:dogId' , function(req , res ){
+    const { dogId } = req.params
+    Dog.findById(dogId, function (err, dog) {
+        dog.remove(function (err) {
+            console.log(err) 
+        })
+    })
 })
 
 module.exports = router;
