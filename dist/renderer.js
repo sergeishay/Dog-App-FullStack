@@ -15,11 +15,11 @@ dogInfo = {
         lat: 32.0784,
         lon: 34.815,
         dog: {
-            name: Lucky,
-            breed: husky,
-            picture:
-            toy:
-            treat:
+            name: "Lucky",
+            breed: "husky",
+            picture: "http://cdn.akc.org/content/article-body-image/newfoundland_dog_pictures.jpg",
+            toy: "ball",
+            treat: "bone"
         }
 
     },
