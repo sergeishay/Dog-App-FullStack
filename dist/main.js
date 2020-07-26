@@ -7,6 +7,7 @@ const loadPage = () => {
     } else {
         renderer.renderNonAuthNav("");
     }
+
 }
 
 const initMap = () => {
