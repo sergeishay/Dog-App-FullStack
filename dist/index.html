@@ -54,12 +54,14 @@
 
 
     <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script> -->
+    <script src="./handlebars/dist/handlebars.js"></script>
     <script src="./jquery/dist/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+    <script src="renderer.js"></script>
     <script src="main.js"></script>
-    <!-- <script async defer
+    <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZAMd5ujixxcusvcP1f8SCsSVDcQaZp-o&callback=initMap">
-        </script> -->
+        </script>
 
     <!-- LOGIN PAGE/REGISTRATION ----------------------------------------------------------------------------------------->
     <!-- <div class="container white z-depth-2">
@@ -286,13 +288,13 @@
 
             var userContentString =
                 <div class=" iw-container">
-                    <div class="iw-title"><img src="{{dog.image}}" class="map-image" height="80" width="80">
-                        <div class="iw-name">{{dog.name}}</div>
+                    <div class="iw-title"><img src="{{user.dog.image}}" class="map-image" height="80" width="80">
+                        <div class="iw-name">{{user.dog.name}}</div>
                     </div>
                     <div class="iw-content">
-                        <div class="iw-subTitle">{{dog.breed}}</div>
-                        <p>{{dog.toy}}</p>
-                        <p>{{dog.treat}}</p>
+                        <div class="iw-subTitle">{{user.dog.breed}}</div>
+                        <p>{{user.dog.toy}}</p>
+                        <p>{{user.dog.treat}}</p>
                         <button>Profile</button>
                     </div>
                     <div class="iw-bottom-gradient"></div>
@@ -314,12 +316,12 @@
                 });
 
             {{#Each otherUser}}
-            var {{_id}}Location = {
+            var location{{_id}} = {
                 lat: {{lat}},
                 lng: {{lon}}
             };
 
-            var {{_id}}String =
+            var string{{_id}} =
             <div class=" iw-container">
                 <div class="iw-title"><img src="{{dog.image}}" class="map-image" height="80" width="80">
                     <div class="iw-name">{{dog.name}}</div>
@@ -333,19 +335,19 @@
                 <div class="iw-bottom-gradient"></div>
             </div>
 
-            var {{_id}}InfoWindow = new google.maps.InfoWindow({
-                content: {{_id}}String
+            var infoWindow{{_id}} = new google.maps.InfoWindow({
+                content: string{{_id}}
             });
                 
-            var {{_id}}Marker = new google.maps.Marker({
-                position: {{_id}}Location,
+            var marker{{_id}} = new google.maps.Marker({
+                position: location{{_id}},
                 map: map,
                 title: 'Dog 2',
                 icon: "assets/download1.png"
             });
             
-            {{_id}}Marker.addListener('click', function () {
-                otherInfoWindow.open(map, {{_id}}Marker);
+            marker{{_id}}.addListener('click', function () {
+                infoWindow{{_id}}.open(map, marker{{_id}});
             });
             {{/Each}}
         }    
