@@ -1,7 +1,4 @@
 class Renderer {
-    renderMap = mapInfo => {
-        this.makeHandlebar("#map-template", "#map", mapInfo)
-    }
 
     renderAuthNav = user => {
         this.makeHandlebar("#authNav-template", '#navbar-container', user)
@@ -15,8 +12,12 @@ class Renderer {
         this.makeHandlebar("#home-template", '#main-container', string)
     }
 
-    renderLogin = (string) => {
-        this.makeHandlebar("#login-template", '#main-container', string)
+    renderLogin = () => {
+        this.makeHandlebar("#login-template", '#main-container', null)
+    }
+
+    renderRegister = () => {
+        this.makeHandlebar("#register-template", '#main-container', null)
     }
 
     renderProfile = (user) => {

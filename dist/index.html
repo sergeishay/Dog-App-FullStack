@@ -75,29 +75,30 @@
     </script>
     <!-- HOME PAGE -->
     <script id="home-template" type="text/x-handlebars-template">
-    <div>
-        <img src="http://www.apimages.com/Images/Ap_Creative_Stock_Header.jpg" alt="">
-        <button class="home-btn">Get Started!</button>
-    </div>
+        <div>
+            <img src="http://www.apimages.com/Images/Ap_Creative_Stock_Header.jpg" alt="">
+            <button class="home-btn">Get Started!</button>
+        </div>
     </script>
     <!-- LOGIN PAGE/REGISTRATION ----------------------------------------------------------------------------------------->
     <script id="login-template" type="text/x-handlebars-template">
         <div class="container white z-depth-2">
             <ul class="tabs teal">
-                <li class="tab col s3"><a class="white-text active" href="#login">login</a></li>
-                <li class="tab col s3"><a class="white-text" href="#register">register</a></li>
+                <li class="tab col s3"><a class="white-text active login" href="#login">login</a></li>
+                <li class="tab col s3"><a class="white-text register" href="#register">register</a></li>
             </ul>
+            <!-- Login page -------------------------------------------------------->
             <div id="login" class="col s12">
                 <form class="col s12">
                     <div class="form-container">
                         <h3 class="teal-text">Hello!</h3>
-                        <div class="row">
+                        <div class="row email">
                             <div class="login-input-field col s12">
                                 <input id="login-email" type="email" class="validate">
                                 <label for="email">Email</label>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row password">
                             <div class="login-input-field col s12">
                                 <input id="login-password" type="password" class="validate">
                                 <label for="password">Password</label>
@@ -108,14 +109,23 @@
                     </div>
                 </form>
             </div>
+        </div>
+    </script>
+    <script id="register-template" type="text/x-handlebars-template">
 
+        <!-- register page ------------------------------------------------------>
+        <div class="container white z-depth-2">
+            <ul class="tabs teal">
+                <li class="tab col s3"><a class="white-text login" href="#login">login</a></li>
+                <li class="tab col s3"><a class="white-text active register" href="#register">register</a></li>
+            </ul>
             <div id="register" class="col s12">
                 <form class="col s12">
                     <div class="form-container">
                         <h3 class="teal-text">Join Us!</h3>
-                        <div class="row">
+                        <div class="row name">
                             <div class="register-input-field col s6">
-                                <input id="register-fist" type="text" class="validate">
+                                <input id="register-first" type="text" class="validate">
                                 <label for="last_name">First Name</label>
                             </div>
                             <div class="register-input-field col s6">
@@ -123,13 +133,13 @@
                                 <label for="last">Last Name</label>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row email">
                             <div class="register-input-field col s12">
                                 <input id="register-email" type="email" class="validate">
                                 <label for="email">Email</label>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row password">
                             <div class="register-input-field col s12">
                                 <input id="register-password" type="password" class="validate">
                                 <label for="password">Password</label>
@@ -281,9 +291,6 @@
         </div>
     </script>
 
-    <script>
-        $(".button-collapse").sideNav()
-    </script>
     <script src="./handlebars/dist/handlebars.js"></script>
     <script src="./jquery/dist/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
@@ -291,6 +298,10 @@
     <script src="renderer.js"></script>
     <script src="apiManager.js"></script>
     <script src="main.js"></script>
+
+    <script>
+        $(".button-collapse").sideNav()
+    </script>
 
 </body>
 
