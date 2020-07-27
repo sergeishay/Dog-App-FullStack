@@ -28,8 +28,8 @@ class Renderer {
         this.makeHandlebar("#events-template", '#main-container', events)
     }
 
-    renderEventForm = (events) => {
-        this.makeHandlebar("#eventsForm-template", '#main-container', events)
+    renderEventForm = () => {
+        this.makeHandlebar("#eventsForm-template", '#main-container', null)
     }
 
     renderChatMessage = (msg) => {

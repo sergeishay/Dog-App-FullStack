@@ -14,8 +14,13 @@ const loadPage = async() => {
     renderer.renderLandingPage()
 }
 
-$("#navbar-container").on("click", ".events", () => {
-    renderer.renderEvents(apiManager.data.mainUser.event);
+$("#navbar-container").on("click", ".events", async() => {
+    await apiManager.getAllEvents()
+    renderer.renderEvents(apiManager.data.events);
+});
+
+$("#main-container").on("click", ".event-create", () => {
+    renderer.renderEventForm()
 })
 
 $("#navbar-container").on("click", ".logout", () => {

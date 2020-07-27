@@ -39,7 +39,9 @@
                     <li class='top-nav-area'>
                         <div class="user-view">
                             <a><img class="circle side-picture" src="{{userPicture}}"></a>
-                            <a><div class="white-text nav-user-name">{{firstName}} {{lastName}}</div></a>
+                            <a>
+                                <div class="white-text nav-user-name">{{firstName}} {{lastName}}</div>
+                            </a>
                         </div>
                     </li>
                     <li><a class="profile waves-effect">Profile</a></li>
@@ -200,7 +202,7 @@
             {{/unless}}
         </div>
         </div>
-    
+
         <!-- CHAT------------------------------------------------------------------ -->
         <div id="body">
             <div id="chat-circle" class="large btn btn-raised">
@@ -217,8 +219,8 @@
                 <div class="chat-input">
                     <form class="idForm">
                         <input id="chat-input" type="text" placeholder="Send a message..." />
-                        <div class="chat-submit" onclick="ck(this)" >
-                        <i class="material-icons send">send</i>
+                        <div class="chat-submit" onclick="ck(this)">
+                            <i class="material-icons send">send</i>
                         </div>
                     </form>
                 </div>
@@ -228,7 +230,7 @@
 
     <script id="message-template" type="text/x-handlebars-template">
         <div class="message">
-             <p>
+            <p>
                 <span class="message">{{time}}:{{name}}: {{input}}</span>
             </p>
         </div>
@@ -236,42 +238,19 @@
     <!-- EVENTS PAGE ----------------------------------------------------------------------------------------------------->
     <script id="events-template" type="text/x-handlebars-template">
         <ul class="collapsible">
+            {{#each event}}
             <li>
-                <div class="collapsible-header"><i class="material-icons">filter_drama</i>DOG PARK MEETUP</div>
+                <div class="collapsible-header"><i class="material-icons">filter_drama</i>{{eventName}}</div>
                 <div class="collapsible-body">
                     <div class="card-action right-align"><a class="event-add btn-floating btn-tiny waves-effect waves-light red"><i
                                 class="material-icons">add</i></a></div>
-                    <div>09:00 - 12:00</div>
-                    <div>Dog park near house</div>
-                    <div>Dog park party!</div>
-                    <span>This is a description This is a description This is a description This is a description This
-                                is a description This is a description This is a description This is a description </span>
+                    <div>{{startTime}} - {{endTime}}</div>
+                    <div>{{type}}</div>
+                    <div>{{address}}</div>
+                    <span>{{description}}</span>
                 </div>
             </li>
-            <li>
-                <div class="collapsible-header"><i class="material-icons">filter_drama</i>DOG PARK MEETUP</div>
-                <div class="collapsible-body">
-                    <div class="card-action right-align"><a class="event-add btn-floating btn-tiny waves-effect waves-light red"><i
-                                    class="material-icons">add</i></a></div>
-                    <div>09:00 - 12:00</div>
-                    <div>Dog park near house</div>
-                    <div>Dog park party!</div>
-                    <span>This is a description This is a description This is a description This is a description This
-                            is a description This is a description This is a description This is a description </span>
-                </div>
-            </li>
-            <li>
-                <div class="collapsible-header"><i class="material-icons">filter_drama</i>DOG PARK MEETUP</div>
-                <div class="collapsible-body">
-                    <div class="card-action right-align"><a class="event-add btn-floating btn-tiny waves-effect waves-light red"><i
-                                    class="material-icons">add</i></a></div>
-                    <span>09:00 - 12:00</span>
-                    <span>Dog park near house</span>
-                    <span>Dog park party!</span>
-                    <span>This is a description This is a description This is a description This is a description This
-                            is a description This is a description This is a description This is a description </span>
-                </div>
-            </li>
+            {{/each}}
         </ul>
         <a class="event-create waves-effect waves-light btn-large right">Submit</a>
     </script>
