@@ -41,12 +41,10 @@ class Renderer {
         this.makeHandlebar("#message-template", '.chat-logs', msg, true)
     }
 }
-
     Renderer.prototype.makeHandlebar = (templateId, containerId, data, bool) => {
         if(!bool) $(containerId).empty()
         const source = $(templateId).html();
         const template = Handlebars.compile(source);
-        console.log(data)
         const newHTML = template(data);
         $(containerId).append(newHTML);
     }

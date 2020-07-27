@@ -218,19 +218,19 @@
                 <div class="chat-input">
                     <form class="idForm">
                         <input id="chat-input" type="text" placeholder="Send a message..." />
-                        <button class="chat-submit" onclick="ck()" type="submit" >
+                        <div class="chat-submit" onclick="ck(this)" >
                         <i class="material-icons">send</i>
-                        </button>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </script>
 
-    <script id="message-template" type="text/x-handlebars-template"></script>
+    <script id="message-template" type="text/x-handlebars-template">
         <div class="message">
              <p>
-                <span class="message">{{data.name}}:{{data.input}}</span>
+                <span class="message">{{time}}:{{name}}: {{input}}</span>
             </p>
         </div>
     </script>
@@ -423,6 +423,7 @@
         </div>
     </script>
 
+    <script src="/moment/moment.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="./handlebars/dist/handlebars.js"></script>
     <script src="./jquery/dist/jquery.js"></script>

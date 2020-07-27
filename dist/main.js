@@ -1,5 +1,6 @@
 const apiManager = new APIManager();
 const renderer = new Renderer();
+const socket = io();
 
 const loadPage = () => {
     if (apiManager.checkAuthState()) {
@@ -114,43 +115,27 @@ const initMap = () => {
     }
 }
 
-
-
-// const chatForm = $("#chat-form")
-// const chatMessage = $(".chat-logs")
-
-const socket = io()
-
 socket.on('messege', message => {
-    console.log(message)
-    console.log(message.id)
-    $(".chat-logs").append(`<p>${message.name}:${message.input}</p>`)
+    renderer.renderChatMessage(message)
+    apiManager.data.messages.push(message)
 })
 
-
-function ck(e){
-    // e.parent().preventDefault()
+function ck(){
+    event.preventDefault()
     const name = apiManager.data.mainUser.firstName
     const id = apiManager.data.mainUser._id
     const input = $("#chat-input").val()
-    // const time = moment().format('LTS')
-    const messageObj = { id: id, name: name, input: input }
+    const time = moment().format('LTS')
+    const messageObj = { 
+        id: id,
+        name: name,
+        input: input,
+        time: time 
+    }
     socket.emit('chatMessage', messageObj)
     $("#chat-input").val('')
-    // renderer.renderChatMessage(messageObj)
 }
-// $("#main-container").on('click',".chat-submit", function () {
-    //     // e.parent().preventDefault()
-    //     const name = apiManager.data.mainUser.firstName
-    //     const input = $("#chat-input").val()
-    //     // const time = moment().format('LTS')
-    //     const messageObj = { name: name, input: input }
-    //     console.log(messageObj)
-    //     socket.emit('chatMessage', messageObj)
-    //     $("#chat-input").val('')
-    // })
-    
-    
+
     loadPage();
     
 
