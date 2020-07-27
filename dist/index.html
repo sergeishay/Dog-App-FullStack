@@ -161,10 +161,10 @@
         <div class="profile-container row">
             <div class="col s12 m6 l6">
                 <div class="profile-card card">
-                    {{#if address.city}}
-                    <div class='profile-location'><i class="material-icons">location_on</i>{{address.city}}, {{address.country}}</div>
+                    {{#if city}}
+                    <div class='profile-location'><i class="material-icons">location_on</i>{{city}}, {{country}}</div>
                     <p class='profile-aboutme'>{{aboutMe}}</p>
-                    {{/if}} {{#unless address.city}}
+                    {{/if}} {{#unless city}}
                     <div class='profile-location'><i class="material-icons">location_on</i>City, Country</div>
                     <p class='profile-aboutme'>Please describe yourself so people can get to know you and your dogs!</p>
                     {{/unless}}

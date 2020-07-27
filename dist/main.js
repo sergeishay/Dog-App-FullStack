@@ -5,11 +5,18 @@ const geocoder = new google.maps.Geocoder();
 const loadPage = () => {
     if (apiManager.checkAuthState()) {
         renderer.renderAuthNav(apiManager.data.mainUser);
+        apiManager.getMainUserById(JSON.parse(localStorage.getItem("user"))._id)
     } else {
         renderer.renderNonAuthNav("");
     }
     renderer.renderLandingPage("")
 }
+
+$("#navbar-container").on("click", ".logout", () => {
+    apiManager.data.mainUser = {}
+    renderer.renderNonAuthNav();
+    renderer.renderLandingPage();
+})
 
 $("#main-container").on("click", ".home-btn", () => {
     renderer.renderLogin();
@@ -50,6 +57,14 @@ $("#main-container").on("click", ".register-btn", async function(e) {
 $("#main-container").on("click", ".login-btn", function() {
     const email = $(this).siblings(".email").find("input").val();
     const password = $(this).siblings(".password").find("input").val();
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (email === user.email && password === user.password) {
+        apiManager.data.mainUser = user;
+        renderer.renderAuthNav();
+        renderer.renderProfile(apiManager.data.mainUser);
+    } else {
+        prompt("Username or password is not correct :(")
+    }
 });
 
 $("#navbar-container").on("click", ".profile", () => {
@@ -93,6 +108,12 @@ $("#main-container").on("click", ".edit-profile", async function() {
     })
 })
 
+$("#main-container").on("click", ".map-profile", async function() {
+    const otherUserId = $(this).closest("#iw-container").attr("class");
+    await apiManager.getOtherUserById(otherUserId);
+    renderer.renderProfile(apiManager.data.otherUser);
+})
+
 function initMap() {
 
     var map = new google.maps.Map(document.getElementById("map"), {
@@ -119,14 +140,14 @@ function initMap() {
         })
 
         let contentString =
-            '<div id="iw-container">' +
+            `<div class="${apiManager.data.users[i]._id}" id="iw-container">` +
             `<div class="iw-title"><img src="${apiManager.data.users[i].dogs[0].dogPicture}" onerror="this.src='https://www.shvilhalev.co.il/wp-content/uploads/2018/07/default-user-image-300x300.png'" "class="map-image" height="80" width="80">` +
             `<div class="iw-name">${apiManager.data.users[i].dogs[0].dogName}</div>` +
             '</div>' +
             '<div class="iw-content">' +
             `<div class="iw-subTitle">${apiManager.data.users[i].dogs[0].breed}</div>` +
             `<p>${apiManager.data.users[i].dogs[0].favoriteToy}<br>${apiManager.data.users[i].dogs[0].favoriteTreat}</p>` +
-            '<button>Profile</button>' +
+            '<button class="map-profile">Profile</button>' +
             '</div>' +
             '<div class="iw-bottom-gradient"></div>' +
             '</div>';
@@ -156,6 +177,7 @@ loadPage();
 $(document).ready(function() {
     $("#navbar-container").on("click", ".map", async() => {
         $("#main-container").empty().append("<div id='map'></div>");
+        await apiManager.getMainUserById(JSON.parse(localStorage.getItem("user"))._id)
         await apiManager.getAllNearbyUsers();
         renderer.renderAuthNav()
         initMap();
