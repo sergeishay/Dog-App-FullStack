@@ -199,6 +199,7 @@
             {{/unless}}
         </div>
         </div>
+    
         <!-- CHAT------------------------------------------------------------------ -->
         <div id="body">
             <div id="chat-circle" class="large btn btn-raised">
@@ -208,20 +209,29 @@
             <div class="chat-box">
                 <div class="chat-box-header">
                     Chat
-                    <span class="chat-box-toggle"><i class="material-icons">close</i></span></div>
+                    <span class="chat-box-toggle"><i class="material-icons">close</i></span>
+                </div>
                 <div class="chat-box-overlay"></div>
                 <div class="chat-logs"></div>
                 <div class="chat-input">
-                    <form>
+                    <form class="idForm">
                         <input id="chat-input" type="text" placeholder="Send a message..." />
-                        <button id="chat-submit" class="chat-submit" type="submit">
+                        <div class="chat-submit" onclick="ck(this)" >
                         <i class="material-icons">send</i>
-                    </button>
+                        </div>
                     </form>
                 </div>
             </div>
+        </div>
     </script>
 
+    <script id="message-template" type="text/x-handlebars-template">
+        <div class="message">
+             <p>
+                <span class="message">{{time}}:{{name}}: {{input}}</span>
+            </p>
+        </div>
+    </script>
     <!-- EVENTS PAGE ----------------------------------------------------------------------------------------------------->
     <script id="events-template" type="text/x-handlebars-template">
         <ul class="collapsible">
@@ -399,6 +409,8 @@
         </div>
     </script>
 
+    <script src="/moment/moment.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
     <script src="./handlebars/dist/handlebars.js"></script>
     <script src="./jquery/dist/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>

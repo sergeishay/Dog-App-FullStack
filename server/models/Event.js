@@ -12,7 +12,6 @@ const eventsSchema = new Schema({
     eventPicture: String,
     description: String,
     address: String
-
 })
 
 
