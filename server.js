@@ -7,7 +7,7 @@ const dog = require('./server/routes/dog');
 const mongoose = require('mongoose');
 const bodyParser = require("body-parser");
 
-mongoose.connect('mongodb://localhost/dog-app', { useNewUrlParser: true });
+mongoose.connect('mongodb+srv://MayheMatan:Mayhematan123@cluster0-cp7uu.mongodb.net/Dogs-app?retryWrites=true&w=majority', { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true });
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use(express.static(path.join(__dirname, 'node_modules')));
 app.use(bodyParser.json())
