@@ -36,10 +36,10 @@
                     <li><a class='logout'>Logout</a></li>
                 </ul>
                 <ul id="mobile-demo" class="side-nav">
-                    <li>
+                    <li class='top-nav-area'>
                         <div class="user-view">
                             <a><img class="circle side-picture" src="{{userPicture}}"></a>
-                            <a><span class="white-text">{{firstName}} {{lastName}}</span></a>
+                            <a><div class="white-text nav-user-name">{{firstName}} {{lastName}}</div></a>
                         </div>
                     </li>
                     <li><a class="profile waves-effect">Profile</a></li>
@@ -209,7 +209,7 @@
             </div>
             <div class="chat-box">
                 <div class="chat-box-header">
-                    Chat
+                    Chat&nbsp&nbsp&nbsp<i class="fas fa-paw"></i>
                     <span class="chat-box-toggle"><i class="material-icons">close</i></span>
                 </div>
                 <div class="chat-box-overlay"></div>
@@ -218,7 +218,7 @@
                     <form class="idForm">
                         <input id="chat-input" type="text" placeholder="Send a message..." />
                         <div class="chat-submit" onclick="ck(this)" >
-                        <i class="material-icons">send</i>
+                        <i class="material-icons send">send</i>
                         </div>
                     </form>
                 </div>
