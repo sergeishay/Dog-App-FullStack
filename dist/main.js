@@ -15,7 +15,7 @@ const loadPage = async() => {
 }
 
 $("#navbar-container").on("click", ".events", () => {
-    renderer.renderEvent(apiManager.data.mainUser.event);
+    renderer.renderEvents(apiManager.data.mainUser.event);
 })
 
 $("#navbar-container").on("click", ".logout", () => {
@@ -152,7 +152,7 @@ function initMap() {
             position: new google.maps.LatLng(apiManager.data.users[i].userLat, apiManager.data.users[i].userLon),
             map: map,
             title: apiManager.data.users[i].dogs[0].dogName,
-            icon: "assets/download1.png"
+            icon: "assets/pawMap.png"
         })
 
         let contentString =

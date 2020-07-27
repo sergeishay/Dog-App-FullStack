@@ -1,5 +1,4 @@
-/* NAV BAR -----------------------------------------------------------------*/
-
+/* NAV BAR ----------------------------------------------------------------------------------------------------------*/
 html,
 body {
     height: 100%;
@@ -163,7 +162,7 @@ nav{
       font-size: 28px;
     }
   }
-/* LOG-IN PAGE---------------------------------------------------------------- */
+/* LOG-IN PAGE-------------------------------------------------------------------------------------------------------- */
 
 h5 {
     font-weight: 400;
@@ -224,9 +223,7 @@ h5 {
 .register:active{
     background-color: #1abc9c;
 }
-/* MAP PAGE -------------------------------------------------------------------*/
-
-
+/* MAP PAGE ----------------------------------------------------------------------------------------------------------*/
 .iw-name {
     top: 32px;
     right: 4px;
@@ -349,7 +346,7 @@ h5 {
     object-fit: cover;
 }
 
-/* USER PROFILE PAGE ----------------------------------------------------------*/
+/* USER PROFILE PAGE ---------------------------------------------------------------------------------------------------*/
 
 .profileEdit-btn {
         border: 2px solid white;
@@ -492,7 +489,7 @@ p {
 }
 
 
-/* -------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------- */
 
 
 /* CHAT BOX*/
@@ -807,12 +804,12 @@ body {
 @media screen and (min-width: 601px) {
     .radius {
         position: relative;
-        left: 9px;
         top: 36px;
         display: inline-block;
         font-size: 15px;
         text-align: -webkit-right;
         color: gray;
+        width: 100%;
     }
 }
 
@@ -854,3 +851,82 @@ h6 {
 .confirmation-tabs-btn {
     position: absolute;
 }
+
+/* EVENT FORM-------------------------------------------------------------------------------------- */
+/* body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #16a085;
+  } */
+  h1 {
+    margin: 0 0 0.25em;
+  }
+  /* Reset Select */
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    outline: 0;
+    box-shadow: none;
+    border: 0 !important;
+    background: #2c3e50;
+    background-image: none;
+  }
+  /* Remove IE arrow */
+  select::-ms-expand {
+    display: none;
+  }
+  /* Custom Select */
+  .select {
+    position: relative;
+    display: flex;
+    width: 20em;
+    height: 3em;
+    line-height: 3;
+    background: #2c3e50;
+    overflow: hidden;
+    border-radius: .25em;
+  }
+  select {
+    flex: 1;
+    padding: 0 .5em;
+    color: #fff;
+    cursor: pointer;
+  }
+  /* Arrow */
+  .select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 1em;
+    background: #34495e;
+    cursor: pointer;
+    pointer-events: none;
+    -webkit-transition: .25s all ease;
+    -o-transition: .25s all ease;
+    transition: .25s all ease;
+  }
+  /* Transition */
+  .select:hover::after {
+    color: #16a085;
+  }
+
+  .event-submit{
+    border: 2px solid #16a085;
+    color: #16a085;
+    font-family: 'Roboto', Segoe UI, calibri, Helvetica, serif;
+    font-size: 13px;
+    top: 264px;
+    left: 10px;
+    width: 126px;
+    position: absolute;
+    border-radius: 413px;
+    cursor: pointer;
+    background-color: transparent;
+    transition: all 0.2s ease-in-out;
+  }
