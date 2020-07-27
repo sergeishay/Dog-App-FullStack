@@ -12,7 +12,7 @@ const dog = require('./server/routes/dog');
 const server = http.createServer(app);
 const io = socketio(server);
 
-mongoose.connect('mongodb+srv://MayheMatan:Mayhematan123@cluster0-cp7uu.mongodb.net/Dogs-app?retryWrites=true&w=majority', { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://MayheMatan:Mayhematan123@cluster0-cp7uu.mongodb.net/Dogs-app?retryWrites=true&w=majority', { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true });
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use(express.static(path.join(__dirname, 'node_modules')));
 app.use(bodyParser.json())
@@ -28,8 +28,8 @@ io.on('connection', socket => {
     // io.emit() //for  all the clients
 
     socket.on('disconnect', () => {
-        io.emit('blabla', 'user has left the chat')
-    }) //run when client disconnects
+            io.emit('blabla', 'user has left the chat')
+        }) //run when client disconnects
 
 
     socket.on('chatMessage', msg => {

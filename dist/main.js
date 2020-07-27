@@ -3,10 +3,10 @@ const renderer = new Renderer();
 const socket = io();
 const geocoder = new google.maps.Geocoder();
 
-const loadPage = () => {
+const loadPage = async() => {
     if (apiManager.checkAuthState()) {
+        await apiManager.getMainUserById(JSON.parse(localStorage.getItem("user"))._id)
         renderer.renderAuthNav(apiManager.data.mainUser);
-        apiManager.getMainUserById(JSON.parse(localStorage.getItem("user"))._id)
     } else {
         renderer.renderNonAuthNav("");
     }
@@ -61,7 +61,7 @@ $("#main-container").on("click", ".login-btn", function() {
     const user = JSON.parse(localStorage.getItem("user"));
     if (email === user.email && password === user.password) {
         apiManager.data.mainUser = user;
-        renderer.renderAuthNav();
+        renderer.renderAuthNav(apiManager.data.mainUser);
         renderer.renderProfile(apiManager.data.mainUser);
     } else {
         prompt("Username or password is not correct :(")
@@ -110,7 +110,7 @@ $("#main-container").on("click", ".edit-profile", async function() {
         localStorage.setItem("user", JSON.stringify(apiManager.data.mainUser));
         $("#main-container").empty().append("<div id='map'></div>");
         await apiManager.getAllNearbyUsers();
-        renderer.renderAuthNav();
+        renderer.renderAuthNav(apiManager.data.mainUser);
         initMap();
     })
 })
@@ -208,7 +208,7 @@ $(document).ready(function() {
         $("#main-container").empty().append("<div id='map'></div>");
         await apiManager.getMainUserById(JSON.parse(localStorage.getItem("user"))._id)
         await apiManager.getAllNearbyUsers();
-        renderer.renderAuthNav()
+        renderer.renderAuthNav(apiManager.data.mainUser)
         initMap();
     });
 })
