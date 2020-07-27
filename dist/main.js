@@ -3,6 +3,7 @@ const renderer = new Renderer();
 
 const loadPage = () => {
     if (apiManager.checkAuthState()) {
+        apiManager.getMainUserById(JSON.parse(localStorage.getItem("user")._id));
         renderer.renderAuthNav(apiManager.data.mainUser);
     } else {
         renderer.renderNonAuthNav("");
@@ -19,6 +20,14 @@ $("#main-container").on("click", ".login", () => {
 });
 
 $("#main-container").on("click", ".register", () => {
+    renderer.renderRegister()
+});
+
+$("#navbar-container").on("click", ".login", () => {
+    renderer.renderLogin()
+});
+
+$("#navbar-container").on("click", ".register", () => {
     renderer.renderRegister()
 });
 
