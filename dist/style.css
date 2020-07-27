@@ -263,6 +263,7 @@ h5 {
 
 /* MAP PAGE -------------------------------------------------------------------*/
 
+
 #map {
     height: 100%;
 }
@@ -356,7 +357,19 @@ h5 {
 
 
 /* USER PROFILE PAGE ----------------------------------------------------------*/
-
+.profileEdit-btn {
+        border: 2px solid white;
+        color: white;
+        font-family: 'Roboto', Segoe UI, calibri, Helvetica, serif;
+        font-size: 13px;
+        top: 172px;
+        width: 149px;
+        position: absolute;
+        border-radius: 413px;
+        cursor: pointer;
+        background-color: transparent;
+        transition: all 0.2s ease-in-out;
+}
 .card-panel {
     transition: box-shadow .25s;
     height: 170px;
