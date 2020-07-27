@@ -32,8 +32,8 @@ class Renderer {
         this.makeHandlebar("#eventsForm-template", '#main-container', events)
     }
 
-    renderProfileForm = () => {
-        this.makeHandlebar("#profileEdit-template", '#main-container', null)
+    renderProfileForm = (user) => {
+        this.makeHandlebar("#profileEdit-template", '#main-container', user)
     }
 }
 
