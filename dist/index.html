@@ -252,7 +252,7 @@
             </li>
             {{/each}}
         </ul>
-        <a class="event-create waves-effect waves-light btn-large right">Submit</a>
+        <a class="event-create waves-effect waves-light btn-large right">Add Event</a>
     </script>
 
     <!-- PROFILE EDIT FORM ----------------------------------------------------------------------------- -->
@@ -317,42 +317,25 @@
     <script id="eventsForm-template" type="text/x-handlebars-template">
         <div id='container'>
             <h6>Create your event</h6>
-            <div class="row">
+            <div class="row title">
                 <div class="input-field col s12">
                     <input class="event-title event-input" placeholder="Event title" type="text">
-                    <label for="title">Title</label>
                 </div>
             </div>
-            <div class="row">
+            <div class="row photo">
                 <div class="input-field file-field col l6 m6 s12">
-                    <div class="btn">
-                        <span>Upload</span>
-                        <input type="file">
-                    </div>
-                    <div class="file-path-wrapper">
-                        <input class="event-photo file-path validate" type="text" placeholder="Add a photo!">
-                    </div>
+                    <input class="event-photo validate" placeholder="Picture URL here" type="text">
                 </div>
                 <div class=" select input-field col l6 m6 s12">
-                    <select name="slct" id='slct'>
-                        <option value=""></option>
-                        <option value="1">Birthday</option>
-                        <option value="2">Workout</option>
-                        <option value="3">Dog park</option>
-                        <option value="4">Holiday</option>
-                        <option value="5">Training</option>
-                        <option value="5">Group Walk</option>
-                </select>
-                    <label>Event type</label>
+                    <input class="event-type validate" placeholder="Event type (walk, birthday, training, etc)" type="text">
                 </div>
             </div>
-            <div class="row">
+            <div class="row location">
                 <div class="input-field col s12">
-                    <input class="event-location validate" placeholder="Who is organizing the event?" type="text">
-                    <label for="organizer">Location</label>
+                    <input class="event-location validate" placeholder="Event location" type="text">
                 </div>
             </div>
-            <div class="row">
+            <div class="row date">
                 <div class="input-field col l6 m6 s12">
                     <label>Date</label><br>
                     <input class="event-date datepicker" type="date">
@@ -366,10 +349,9 @@
                     <input class='event-end' type="time" name="appt" min="09:00" max="18:00" required>
                 </div>
             </div>
-            <div class="row">
+            <div class="row descrition">
                 <div class="input-field col s12">
-                    <input class="event-description validate" type="text">
-                    <label for="organizer">Describe your event</label>
+                    <input class="event-description validate" placeholder='Describe your event' type="text">
                 </div>
             </div>
             </form>
@@ -396,11 +378,6 @@
     <script>
         $("#main-container").on("click", ".collapsible", function() {
             $(this).collapsible();
-        });
-    </script>
-    <script>
-        $("#main-container").on("click", ".collapsible", () => {
-            $('select').material_select();
         });
     </script>
     <script>
