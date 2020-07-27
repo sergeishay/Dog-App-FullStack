@@ -32,7 +32,6 @@ class Renderer {
         this.makeHandlebar("#eventsForm-template", '#main-container', events)
     }
 
-<<<<<<< HEAD
     renderProfileForm = () => {
         this.makeHandlebar("#profileEdit-template", '#main-container', null)
 
@@ -40,17 +39,17 @@ class Renderer {
 
     renderChatMessage = (msg) => {
         this.makeHandlebar("#message-template", '.chat-logs', msg, true)
-=======
+    }
     renderProfileForm = (user) => {
         this.makeHandlebar("#profileEdit-template", '#main-container', user)
->>>>>>> a1018e0bc702daf2d1dccf92930fc66006694d5d
     }
 }
     Renderer.prototype.makeHandlebar = (templateId, containerId, data, bool) => {
-        if(!bool) $(containerId).empty()
-        const source = $(templateId).html();
-        const template = Handlebars.compile(source);
-        const newHTML = template(data);
-        $(containerId).append(newHTML);
-    }
+    if (!bool) $(containerId).empty()
+    const source = $(templateId).html();
+    const template = Handlebars.compile(source);
+    const newHTML = template(data);
+    $(containerId).append(newHTML);
+}
+
 

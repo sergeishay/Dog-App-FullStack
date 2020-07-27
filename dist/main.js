@@ -1,10 +1,7 @@
 const apiManager = new APIManager();
 const renderer = new Renderer();
-<<<<<<< HEAD
 const socket = io();
-=======
 const geocoder = new google.maps.Geocoder();
->>>>>>> a1018e0bc702daf2d1dccf92930fc66006694d5d
 
 const loadPage = () => {
     if (apiManager.checkAuthState()) {
@@ -42,12 +39,8 @@ $("#navbar-container").on("click", ".register", () => {
     renderer.renderRegister()
 });
 
-<<<<<<< HEAD
-$("#main-container").on("click", ".register-btn", async function () {
-=======
 $("#main-container").on("click", ".register-btn", async function(e) {
     e.preventDefault()
->>>>>>> a1018e0bc702daf2d1dccf92930fc66006694d5d
     const firstName = $(this).siblings(".name").find("#register-first").val()
     const lastName = $(this).siblings(".name").find("#register-last").val();
     const email = $(this).siblings(".email").find("input").val();
@@ -79,15 +72,14 @@ $("#navbar-container").on("click", ".profile", () => {
     renderer.renderProfile(apiManager.data.mainUser);
 });
 
-<<<<<<< HEAD
 $("#navbar-container").on("click", ".map", async () => {
     $("#main-container").empty();
     await apiManager.getAllNearbyUsers();
     initMap();
-=======
+})
+
 $("#main-container").on("click", ".profileEdit-btn", () => {
-    renderer.renderProfileForm();
->>>>>>> a1018e0bc702daf2d1dccf92930fc66006694d5d
+    renderer.renderProfileForm(apiManager.data.mainUser);
 });
 
 $("#main-container").on("click", ".edit-profile", async function() {
@@ -186,7 +178,6 @@ function initMap() {
     }
 }
 
-<<<<<<< HEAD
 socket.on('messege', message => {
     renderer.renderChatMessage(message)
     apiManager.data.messages.push(message)
@@ -206,14 +197,7 @@ function ck(){
     }
     socket.emit('chatMessage', messageObj)
     $("#chat-input").val('')
-}
-
-    loadPage();
-    
-
-=======
-
-loadPage();
+}    
 
 $(document).ready(function() {
     $("#navbar-container").on("click", ".map", async() => {
@@ -224,4 +208,5 @@ $(document).ready(function() {
         initMap();
     });
 })
->>>>>>> a1018e0bc702daf2d1dccf92930fc66006694d5d
+
+loadPage()
