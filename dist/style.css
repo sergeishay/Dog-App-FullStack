@@ -12,7 +12,6 @@ body {
     width: 100px;
 }
 
-header,
 main,
 footer {
     padding-left: 300px;
@@ -144,9 +143,9 @@ nav{
 
 /* HOME PAGE ____________________________________________________________________________*/
 #header {
-    width: 100vw;
-    height: 95vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('https://www.purina.co.uk/sites/g/files/mcldtz2481/files/2018-08/shutterstock_382462741_2.jpg');
+    width: 100%;
+    height: 92vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url(https://www.purina.co.uk/sites/g/files/mcldtz2481/files/2018-08/shutterstock_382462741_2.jpg);
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -155,7 +154,7 @@ nav{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  }
+}
   
   .header-text {
     width: 500px;
