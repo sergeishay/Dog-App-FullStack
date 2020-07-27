@@ -7,8 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
-        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
 
 <body>
@@ -83,10 +82,11 @@
     </script>
     <!-- LOGIN PAGE/REGISTRATION ----------------------------------------------------------------------------------------->
     <script id="login-template" type="text/x-handlebars-template">
+
         <div class="container white z-depth-2">
             <ul class="tabs teal">
-                <li class="tab col s3"><a class="white-text active login" href="#login">login</a></li>
-                <li class="tab col s3"><a class="white-text register" href="#register">register</a></li>
+                <li class="tab col s3"><a class="white-text active login">login</a></li>
+                <li class="tab col s3"><a class="white-text register">register</a></li>
             </ul>
             <!-- Login page -------------------------------------------------------->
             <div id="login" class="col s12">
@@ -112,46 +112,44 @@
             </div>
         </div>
     </script>
+    <!-- register page ------------------------------------------------------>
     <script id="register-template" type="text/x-handlebars-template">
-
-        <!-- register page ------------------------------------------------------>
-    <div class="container white z-depth-2">
-        <ul class="tabs teal">
-            <li class="tab col s3"><a class="white-text login" href="#login">login</a></li>
-            <li class="tab col s3"><a class="white-text active register" href="#register">register</a></li>
-        </ul>
-        <div id="register" class="col s12">
-            <form class="col s12">
-                <div class="form-container">
-                    <h3 class="teal-text">Join Us!</h3>
-                    <div class="row name">
-                        <div class="register-input-field col s6">
-                            <input id="register-first" type="text" class="validate">
-                            <label for="last_name">First Name</label>
+        <div class="container white z-depth-2">
+            <ul class="tabs teal">
+                <li class="tab col s3"><a class="white-text login">login</a></li>
+                <li class="tab col s3"><a class="white-text active register">register</a></li>
+            </ul>
+            <div id="register" class="col s12">
+                <form class="col s12">
+                    <div class="form-container">
+                        <h3 class="teal-text">Join Us!</h3>
+                        <div class="row name">
+                            <div class="register-input-field col s6">
+                                <input id="register-first" type="text" class="validate">
+                                <label for="last_name">First Name</label>
+                            </div>
+                            <div class="register-input-field col s6">
+                                <input id="register-last" type="text" class="validate">
+                                <label for="last">Last Name</label>
+                            </div>
                         </div>
-                        <div class="register-input-field col s6">
-                            <input id="register-last" type="text" class="validate">
-                            <label for="last">Last Name</label>
+                        <div class="row email">
+                            <div class="register-input-field col s12">
+                                <input id="register-email" type="email" class="validate">
+                                <label for="email">Email</label>
+                            </div>
                         </div>
+                        <div class="row password">
+                            <div class="register-input-field col s12">
+                                <input id="register-password" type="password" class="validate">
+                                <label for="password">Password</label>
+                            </div>
+                        </div>
+                        <button class="register-btn btn waves-effect waves-light teal" type="">Submit</button>
                     </div>
-                    <div class="row email">
-                        <div class="register-input-field col s12">
-                            <input id="register-email" type="email" class="validate">
-                            <label for="email">Email</label>
-                        </div>
-                    </div>
-                    <div class="row password">
-                        <div class="register-input-field col s12">
-                            <input id="register-password" type="password" class="validate">
-                            <label for="password">Password</label>
-                        </div>
-                    </div>
-                    <button class="register-btn btn waves-effect waves-light teal" type="submit"
-                        name="action">Submit</button>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
-    </div>
     </script>
     <!-- PROFILE PAGE-------------------------------------------------------------------------------------------------- -->
     <script id="profile-template" type="text/x-handlebars-template">
@@ -163,10 +161,10 @@
         <div class="profile-container row">
             <div class="col s12 m6 l6">
                 <div class="profile-card card">
-                    {{#if address.city}}
-                    <div class='profile-location'><i class="material-icons">location_on</i>{{address.city}}, {{address.country}}</div>
+                    {{#if city}}
+                    <div class='profile-location'><i class="material-icons">location_on</i>{{city}}, {{country}}</div>
                     <p class='profile-aboutme'>{{aboutMe}}</p>
-                    {{/if}} {{#unless address.city}}
+                    {{/if}} {{#unless city}}
                     <div class='profile-location'><i class="material-icons">location_on</i>City, Country</div>
                     <p class='profile-aboutme'>Please describe yourself so people can get to know you and your dogs!</p>
                     {{/unless}}
@@ -188,8 +186,8 @@
             {{/each}} {{/if}} {{#unless dogs}}
             <div class="col s12 m6 l6">
                 <div class="profile-card card">
-                    <a><img class="profile-dog-picture circle" src="{{dogPicture}}" onerror="this.src='https://www.shvilhalev.co.il/wp-content/uploads/2018/07/default-user-image-300x300.png'"></a>
-                    <div class='profile-dog-name'>Your dog's name here!</div>
+                    <a><img class="profile-dog-picture circle" src="{{dogPicture}}" onerror="this.src='https://www.clipartkey.com/mpngs/m/42-420445_picture-free-library-grey-grey-dog-paw-print.png'"></a>
+                    <div class='profile-dog-name'>Your Dog!</div>
                     <div class='profile-dog-text'>
                         <div class='profile-breed'><i class="fas fa-paw"></i>&nbsp&nbsp&nbsp Dog breed</div>
                         <div class='profile-weight'><i class="fas fa-weight"></i>&nbsp&nbsp&nbsp Dog weight</div>
@@ -279,66 +277,54 @@
 
     <!-- PROFILE EDIT FORM ----------------------------------------------------------------------------- -->
     <script id="profileEdit-template" type="text/x-handlebars-template">
-    <div id='profileEdit-container'>
-        <h5>Edit your profile</h5>
-        <div class="row">
-            <div class="input-field file-field col l4 m4 s12">
-                <div class="btn">
-                    <span>Upload</span>
-                    <input type="file" multiple>
+        <div id='profileEdit-container'>
+            <h5>Edit your profile</h5>
+            <div class="row photo">
+                <div class="input-field col l4 m4 s12">
+                    <input class="user-photo validate" placeholder="Picture URL here" type="text">
                 </div>
-                <div class="file-path-wrapper">
-                    <input class="user-photo file-path validate" type="text" placeholder="Photo">
+                <div class="input-field col l4 m4 s12">
+                    <input class="user-first validate" value="{{firstName}}" placeholder="First Name" type="text">
                 </div>
-            </div>
-            <div class="input-field col l4 m4 s12">
-                <input class="user-first validate" placeholder="First Name" type="text">
-            </div>
-            <div class="input-field col l4 m4 s12">
-                <input class="user-last validate" placeholder="Last Name" type="text">
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="input-field col l4 m4 s12">
-                <input class="user-location validate" placeholder="Location" type="text">
-            </div>
-            <div class="col l4 m4 s12">
-                <label class='radius' for="title">Max Meet-up Distance (km)</label>
-            </div>
-            <div class="input-field col l4 m4 s12">
-                <p class="range-field">
-                    <input class='user-radius' type="range" id="test5" min="0" max="2000" value="400" step="100" />
-                </p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col l12 m12 s12">
-                <input class="user-about validate" placeholder="About yourself" type="text">
-            </div>
-        </div>
-        <br>
-        <h5>Now about your dog...</h5>
-        <div class="row">
-            <div class="input-field file-field col l4 m4 s12">
-                <div class="btn ">
-                    <span>Upload</span>
-                    <input type="file" multiple>
-                </div>
-                <div class="file-path-wrapper">
-                    <input class="user-dog-photo file-path validate" type="text" placeholder="Photo">
+                <div class="input-field col l4 m4 s12">
+                    <input class="user-last validate" value="{{lastName}}" placeholder="Last Name" type="text">
                 </div>
             </div>
-            <div class="input-field col l4 m4 s12">
-                <input class="user-dog-name validate" placeholder="Name" type="text">
+            <br>
+            <div class="row distance">
+                <div class="input-field col l4 m4 s12">
+                    <input class="user-location validate" placeholder="Location" type="text">
+                </div>
+                <div class="col l4 m4 s12">
+                    <label class='radius' for="title">Max Meet-up Distance (km)</label>
+                </div>
+                <div class="input-field col l4 m4 s12">
+                    <p class="range-field">
+                        <input class='user-radius' type="range" id="test5" min="0" max="2000" value="400" step="100" />
+                    </p>
+                </div>
             </div>
-            <div class="input-field col l4 m4 s12">
-                <input class="user-dog-breed validate" placeholder="Breed" type="text">
+            <div class="row about">
+                <div class="input-field col l12 m12 s12">
+                    <input class="user-about validate" placeholder="About yourself" type="text">
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="input-field col l4 m4 s122">
-                <select>
+            <br>
+            <h5>Now about your dog...</h5>
+            <div class="row dogPhoto">
+                <div class="input-field col l4 m4 s12">
+                    <input class="user-dog-photo validate" placeholder="Picture URL here" type="text">
+                </div>
+                <div class="input-field col l4 m4 s12">
+                    <input class="user-dog-name validate" placeholder="Name" type="text">
+                </div>
+                <div class="input-field col l4 m4 s12">
+                    <input class="user-dog-breed validate" placeholder="Breed" type="text">
+                </div>
+            </div>
+            <div class="row weight">
+                <div class="user-dog-weight input-field col l4 m4 s122">
+                    <select>
                     <option value="">Weight</option>
                     <option value="1">
                         < 4kg</option>
@@ -348,16 +334,16 @@
                     <option value="5">18 - 27kg</option>
                     <option value="5">> 27kg </option>
                 </select>
+                </div>
+                <div class="input-field col l4 m4 s12">
+                    <input class="user-dog-toy validate" placeholder="Favorite toy" type="text">
+                </div>
+                <div class="input-field col l4 m4 s12">
+                    <input class="user-dog-treat validate" placeholder="Favorite treat" type="text">
+                </div>
             </div>
-            <div class="input-field col l4 m4 s12">
-                <input class="user-dog-toy validate" placeholder="Favorite toy" type="text">
-            </div>
-            <div class="input-field col l4 m4 s12">
-                <input class="user-dog-treat validate" placeholder="Favorite treat" type="text">
-            </div>
-        </div>
-        <a class="waves-effect waves-light btn-large right">Submit</a>
-        </form>
+            <a class="edit-profile waves-effect waves-light btn-large right">Submit</a>
+            </form>
     </script>
     <!-- EVENTS FORM PAGE----------------------------------------------------------------------------------------------------->
     <script id="eventsForm-template" type="text/x-handlebars-template">
@@ -423,12 +409,19 @@
         </div>
     </script>
 
+<<<<<<< HEAD
     <script src="/moment/moment.js"></script>
     <script src="/socket.io/socket.io.js"></script>
+=======
+>>>>>>> a1018e0bc702daf2d1dccf92930fc66006694d5d
     <script src="./handlebars/dist/handlebars.js"></script>
     <script src="./jquery/dist/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZAMd5ujixxcusvcP1f8SCsSVDcQaZp-o"></script>
+<<<<<<< HEAD
+=======
+    <!-- <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> -->
+>>>>>>> a1018e0bc702daf2d1dccf92930fc66006694d5d
     <script src="renderer.js"></script>
     <script src="apiManager.js"></script>
     <script src="main.js"></script>

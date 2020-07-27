@@ -4,11 +4,18 @@ class APIManager {
             mainUser: {},
             users: [],
             events: [],
+<<<<<<< HEAD
             messages:[]
+=======
+            otherUser: {},
+>>>>>>> a1018e0bc702daf2d1dccf92930fc66006694d5d
         };
     }
     getMainUserById = async userId => {
         this.data.mainUser = await $.get(`/user/${userId}`)
+    }
+    getOtherUserById = async userId => {
+        this.data.otherUser = await $.get(`/user/${userId}`)
     }
     createNewUser = async user => {
         this.data.mainUser = await $.post("/user", user);
@@ -16,8 +23,8 @@ class APIManager {
     createNewEvent = async event => {
         this.data.events.push(await $.post("/event", event))
     }
-    createNewDog = (userId, dog) => {
-        $.post(`/dog/${userId}`, dog);
+    createNewDog = async(userId, dog) => {
+        await $.post(`/dog/${userId}`, dog);
     }
     getAllEvents = async() => {
         this.data.events = await $.get("/events");
@@ -25,13 +32,13 @@ class APIManager {
     getAllNearbyUsers = async() => {
         this.data.users = await $.get("/users");
     }
-    updateUserProfile = (userId, info) => {
-        $.ajax({
+    updateUserProfile = async(userId, info) => {
+        await $.ajax({
             url: `user/${userId}`,
             method: "PUT",
             data: info,
             success: updatedUser => {
-                this.mainUser = updatedUser;
+                this.data.mainUser = updatedUser;
             }
         });
     }
@@ -41,6 +48,18 @@ class APIManager {
             method: "PUT",
             data: this.mainUser
         });
+    }
+
+    updateDog = (dogId, info) => {
+        $.ajax({
+            url: `/dog/${dogId}`,
+            method: "PUT",
+            data: info,
+            success: newDog => {
+                const oldDogIndex = this.data.mainUser.dogs.findIndex(dog => dog._id === dogId);
+                this.data.mainUser.dogs.splice(oldDogIndex, 1, newDog);
+            }
+        })
     }
 
     checkAuthState = () => {
@@ -113,4 +132,5 @@ class APIManager {
             })(marker, i));
         }
     }
+
 }
