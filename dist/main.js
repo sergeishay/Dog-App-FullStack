@@ -45,7 +45,6 @@ $("#main-container").on("click", ".register-btn", function() {
 $("#main-container").on("click", ".login-btn", function() {
     const email = $(this).siblings(".email").find("input").val();
     const password = $(this).siblings(".password").find("input").val();
-
 });
 
 $("#navbar-container").on("click", ".profile", () => {
