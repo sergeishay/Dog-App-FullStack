@@ -2,18 +2,8 @@ const apiManager = new APIManager();
 const renderer = new Renderer();
 const geocoder = new google.maps.Geocoder();
 
-// function loadScript() {
-//     const script = document.createElement("script");
-//     script.type = "text/javascript";
-//     script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDZAMd5ujixxcusvcP1f8SCsSVDcQaZp-o&callback=initMap';
-//     script.defer = true;
-//     script.async = true
-//     document.body.appendChild(script)
-// }
-
 const loadPage = () => {
     if (apiManager.checkAuthState()) {
-        apiManager.getMainUserById(JSON.parse(localStorage.getItem("user"))._id);
         renderer.renderAuthNav(apiManager.data.mainUser);
     } else {
         renderer.renderNonAuthNav("");
@@ -52,7 +42,7 @@ $("#main-container").on("click", ".register-btn", async function() {
         const user = { firstName, lastName, password, email, userLat, userLon };
         await apiManager.createNewUser(user);
         localStorage.setItem("user", JSON.stringify(apiManager.data.mainUser));
-        renderer.renderProfile(apiManager.data.mainUser);
+        renderer.renderProfileForm(apiManager.data.mainUser);
     })
 })
 
@@ -79,49 +69,27 @@ $("#main-container").on("click", ".edit-profile", async function() {
 
     const dogPicture = $(this).siblings(".dogPhoto").find(".user-dog-photo").val();
     const dogName = $(this).siblings(".dogPhoto").find(".user-dog-name").val();
+    const breed = $(this).siblings(".dogPhoto").find(".user-dog-breed").val();
+    const weight = $(this).siblings(".weight").find(".user-dog-weight").val();
+    const favoriteTreat = $(this).siblings(".weight").find(".user-dog-treat").val();
+    const favoriteToy = $(this).siblings(".weight").find(".user-dog-toy").val();
+    const dog = { dogName, dogPicture, breed, weight, favoriteToy, favoriteTreat }
+    await apiManager.createNewDog(apiManager.data.mainUser._id, dog)
 
-    let found = false;
-    for (let dog of apiManager.data.mainUser.dogs) {
-        if (dog.dogName === dogName) {
-            found = true;
-        }
-    }
-    if (!found) {
-        const breed = $(this).siblings(".dogPhoto").find(".user-dog-breed").val();
-        const weight = $(this).siblings(".weight").find(".user-dog-weight").val();
-        const favoriteTreat = $(this).siblings(".weight").find(".user-dog-treat").val();
-        const favoriteToy = $(this).siblings(".weight").find(".user-dog-toy").val();
-        const dog = { dogName, dogPicture, breed, weight, favoriteToy, favoriteTreat }
-        await apiManager.createNewDog(apiManager.data.mainUser._id, dog)
-    } else {
-        const breed = $(this).siblings(".dogPhoto").find(".user-dog-breed").val();
-        const weight = $(this).siblings(".weight").find(".user-dog-weight").val();
-        const favoriteTreat = $(this).siblings(".weight").find(".user-dog-treat").val();
-        const favoriteToy = $(this).siblings(".weight").find(".user-dog-toy").val();
-        const dog = { dogName, dogPicture, breed, weight, favoriteToy, favoriteTreat }
-        await apiManager.updateDog(await apiManager.data.mainUser.dogs.find(dog => dog.dogName === dogName)._id, dog);
+    geocoder.geocode({ address: address }, async function(result, status) {
+        const userLat = result[0].geometry.location.lat();
+        const userLon = result[0].geometry.location.lng();
+        const fullAddress = result[0].formatted_address.split(", ");
+        const city = fullAddress[0]
+        const country = fullAddress[1]
+        const info = { firstName, lastName, userPicture, radius, aboutMe, userLat, userLon, city, country };
+        await apiManager.updateUserProfile(apiManager.data.mainUser._id, info);
+        localStorage.setItem("user", JSON.stringify(apiManager.data.mainUser));
         $("#main-container").empty().append("<div id='map'></div>");
         await apiManager.getAllNearbyUsers();
+        renderer.renderAuthNav();
         initMap();
-    }
-
-    if (address) {
-        geocoder.geocode({ address: address }, async function(result, status) {
-            const userLat = result[0].geometry.location.lat();
-            const userLon = result[0].geometry.location.lng();
-            const fullAddress = result[0].formatted_address.split(", ");
-            const city = fullAddress[0]
-            const country = fullAddress[1]
-            const info = { firstName, lastName, userPicture, radius, aboutMe, userLat, userLon, city, country };
-            await apiManager.updateUserProfile(apiManager.data.mainUser._id, info);
-            $("#main-container").empty().append("<div id='map'></div>");
-            await apiManager.getAllNearbyUsers();
-            initMap();
-        })
-    }
-    $("#main-container").empty().append("<div id='map'></div>");
-    await apiManager.getAllNearbyUsers();
-    initMap();
+    })
 })
 
 function initMap() {
