@@ -114,13 +114,13 @@ const socket = io()
 
 socket.on('messege', messege => {
     console.log(messege)
-    renderChatMessage(messege)
+    renderer.renderChatMessage(messege)
 })
 
 const name = apiManager.data.mainUser.firstName
 const input = $("#chat-input").val()
-const time = moment().format('LTS')
-const messageObj =  {name: name, input: input, time: time}
+// const time = moment().format('LTS')
+const messageObj =  {name: name, input: input}
 
 $("#chat-submit").on('click', function(e){
     e.preventDefault()
