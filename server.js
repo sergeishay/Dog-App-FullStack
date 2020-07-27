@@ -48,5 +48,4 @@ app.use('/dog', dog);
 app.use('/dogs', dog);
 
 
-const port = 3000;
-server.listen(port, () => console.log(`Running server on port ${port}`)); ////*************check the documentition/
+server.listen(PORT, () => console.log(`Running server on port ${PORT}`)); ////*************check the documentition/
