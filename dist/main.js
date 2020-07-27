@@ -3,7 +3,7 @@ const renderer = new Renderer();
 
 const loadPage = () => {
     if (apiManager.checkAuthState()) {
-        apiManager.getMainUserById(JSON.parse(localStorage.getItem("user")._id));
+        apiManager.getMainUserById(JSON.parse(localStorage.getItem("user"))._id);
         renderer.renderAuthNav(apiManager.data.mainUser);
     } else {
         renderer.renderNonAuthNav("");
@@ -31,15 +31,15 @@ $("#navbar-container").on("click", ".register", () => {
     renderer.renderRegister()
 });
 
-$("#main-container").on("click", ".register-btn", function() {
+$("#main-container").on("click", ".register-btn", async function() {
     const firstName = $(this).siblings(".name").find("#register-first").val()
     const lastName = $(this).siblings(".name").find("#register-last").val();
     const email = $(this).siblings(".email").find("input").val();
     const password = $(this).siblings(".password").find("input").val();
     const user = { firstName, lastName, password, email };
-    apiManager.createNewUser(user);
-    localStorage.setItem("user", JSON.stringify(user));
-    loadPage();
+    await apiManager.createNewUser(user);
+    localStorage.setItem("user", JSON.stringify(apiManager.data.mainUser));
+    renderProfile(apiManager.data.mainUser);
 })
 
 $("#main-container").on("click", ".login-btn", function() {
@@ -48,7 +48,7 @@ $("#main-container").on("click", ".login-btn", function() {
 });
 
 $("#navbar-container").on("click", ".profile", () => {
-    renderer.renderProfile(apiManager.mainUser);
+    renderer.renderProfile(apiManager.data.mainUser);
 });
 
 $("#navbar-container").on("click", ".map", async() => {

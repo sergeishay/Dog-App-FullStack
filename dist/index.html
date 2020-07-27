@@ -7,8 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
-        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
 
 <body>
@@ -60,14 +59,13 @@
                 <a id="logo-container" class="brand-logo center">Puppy Pals</a>
                 <a data-activates="mobile-demo" class="button-collapse"><i class="material-icons menu">menu</i></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a class='profile'>Login</a></li>
-                    <li><a class='map'>Sign-up</a></li>
+                    <li><a class='login'>Login</a></li>
+                    <li><a class='register'>Sign-up</a></li>
                 </ul>
                 <ul id="mobile-demo" class="side-nav">
-                    <li><a class="map waves-effect">Login</a></li>
-                    <li><a class="events waves-effect">Sign-up</a></li>
+                    <li><a class="login waves-effect">Login</a></li>
+                    <li><a class="register waves-effect">Sign-up</a></li>
                     <div class="divider"></div>
-                    <li><a class="about waves-effect">About Us</a></li>
                 </ul>
             </div>
         </nav>
@@ -76,14 +74,11 @@
     <script id="home-template" type="text/x-handlebars-template">
         <header id='header'>
             <div class="header-text">
-            <h1> MUST LOVE <br><span id="photography"> DOGS. </span></h1>
-            <p id='p'> PuppyPals is a free dog social networking app designed to 
-                connect nearby dogs and dog owners! We are a furry friend 
-                focussed community, and strive to give dog owners endless 
-                opportunities to socialize their dogs and other dog lovers. </p>
-            <button class="home-btn"> Start Now! </button>
+                <h1> MUST LOVE <br><span id="photography"> DOGS. </span></h1>
+                <p id='p'> PuppyPals is a free dog social networking app designed to connect nearby dogs and dog owners! We are a furry friend focussed community, and strive to give dog owners endless opportunities to socialize their dogs and other dog lovers. </p>
+                <button class="home-btn"> Start Now! </button>
             </div>
-          </header>
+        </header>
     </script>
     <!-- LOGIN PAGE/REGISTRATION ----------------------------------------------------------------------------------------->
     <script id="login-template" type="text/x-handlebars-template">
@@ -119,43 +114,42 @@
     <script id="register-template" type="text/x-handlebars-template">
 
         <!-- register page ------------------------------------------------------>
-    <div class="container white z-depth-2">
-        <ul class="tabs teal">
-            <li class="tab col s3"><a class="white-text login" href="#login">login</a></li>
-            <li class="tab col s3"><a class="white-text active register" href="#register">register</a></li>
-        </ul>
-        <div id="register" class="col s12">
-            <form class="col s12">
-                <div class="form-container">
-                    <h3 class="teal-text">Join Us!</h3>
-                    <div class="row name">
-                        <div class="register-input-field col s6">
-                            <input id="register-first" type="text" class="validate">
-                            <label for="last_name">First Name</label>
+        <div class="container white z-depth-2">
+            <ul class="tabs teal">
+                <li class="tab col s3"><a class="white-text login" href="#login">login</a></li>
+                <li class="tab col s3"><a class="white-text active register" href="#register">register</a></li>
+            </ul>
+            <div id="register" class="col s12">
+                <form class="col s12">
+                    <div class="form-container">
+                        <h3 class="teal-text">Join Us!</h3>
+                        <div class="row name">
+                            <div class="register-input-field col s6">
+                                <input id="register-first" type="text" class="validate">
+                                <label for="last_name">First Name</label>
+                            </div>
+                            <div class="register-input-field col s6">
+                                <input id="register-last" type="text" class="validate">
+                                <label for="last">Last Name</label>
+                            </div>
                         </div>
-                        <div class="register-input-field col s6">
-                            <input id="register-last" type="text" class="validate">
-                            <label for="last">Last Name</label>
+                        <div class="row email">
+                            <div class="register-input-field col s12">
+                                <input id="register-email" type="email" class="validate">
+                                <label for="email">Email</label>
+                            </div>
                         </div>
+                        <div class="row password">
+                            <div class="register-input-field col s12">
+                                <input id="register-password" type="password" class="validate">
+                                <label for="password">Password</label>
+                            </div>
+                        </div>
+                        <button class="register-btn btn waves-effect waves-light teal" type="submit" name="action">Submit</button>
                     </div>
-                    <div class="row email">
-                        <div class="register-input-field col s12">
-                            <input id="register-email" type="email" class="validate">
-                            <label for="email">Email</label>
-                        </div>
-                    </div>
-                    <div class="row password">
-                        <div class="register-input-field col s12">
-                            <input id="register-password" type="password" class="validate">
-                            <label for="password">Password</label>
-                        </div>
-                    </div>
-                    <button class="register-btn btn waves-effect waves-light teal" type="submit"
-                        name="action">Submit</button>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
-    </div>
     </script>
     <!-- PROFILE PAGE-------------------------------------------------------------------------------------------------- -->
     <script id="profile-template" type="text/x-handlebars-template">
@@ -169,15 +163,13 @@
                     {{#if address.city}}
                     <div class='profile-location'><i class="material-icons">location_on</i>{{address.city}}, {{address.country}}</div>
                     <p class='profile-aboutme'>{{aboutMe}}</p>
-                    {{/if}}
-                    {{#unless address.city}}
+                    {{/if}} {{#unless address.city}}
                     <div class='profile-location'><i class="material-icons">location_on</i>City, Country</div>
                     <p class='profile-aboutme'>Please describe yourself so people can get to know you and your dogs!</p>
-                    {{\unless}}
+                    {{/unless}}
                 </div>
             </div>
-            {{#if dogs}}
-            {{#each dogs}}
+            {{#if dogs}} {{#each dogs}}
             <div class="col s12 m6 l6">
                 <div class="profile-card card">
                     <a><img class="profile-dog-picture circle" src="{{dogPicture}}"></a>
@@ -190,9 +182,7 @@
                     </div>
                 </div>
             </div>
-            {{/each}}
-            {{/if}}
-            {{#unless dogs}}
+            {{/each}} {{/if}} {{#unless dogs}}
             <div class="col s12 m6 l6">
                 <div class="profile-card card">
                     <a><img class="profile-dog-picture circle" src="{{dogPicture}}" onerror="this.src='https://www.shvilhalev.co.il/wp-content/uploads/2018/07/default-user-image-300x300.png'"></a>
@@ -207,74 +197,71 @@
             </div>
             {{/unless}}
         </div>
-    </div>
-    <!-- CHAT------------------------------------------------------------------ -->
-    <div id="body">
-        <div id="chat-circle" class="large btn btn-raised">
-            <div id="chat-overlay"></div>
-            <i class="chat-icon material-icons large">chat</i>
         </div>
-        <div class="chat-box">
-            <div class="chat-box-header">
-                Chat
-                <span class="chat-box-toggle"><i class="material-icons">close</i></span></div>
-            <div class="chat-box-overlay"></div>
-            <div class="chat-logs"></div>
-            <div class="chat-input">
-                <form>
-                    <input id="chat-input" type="text" placeholder="Send a message..." />
-                    <button id="chat-submit" class="chat-submit" type="submit">
+        <!-- CHAT------------------------------------------------------------------ -->
+        <div id="body">
+            <div id="chat-circle" class="large btn btn-raised">
+                <div id="chat-overlay"></div>
+                <i class="chat-icon material-icons large">chat</i>
+            </div>
+            <div class="chat-box">
+                <div class="chat-box-header">
+                    Chat
+                    <span class="chat-box-toggle"><i class="material-icons">close</i></span></div>
+                <div class="chat-box-overlay"></div>
+                <div class="chat-logs"></div>
+                <div class="chat-input">
+                    <form>
+                        <input id="chat-input" type="text" placeholder="Send a message..." />
+                        <button id="chat-submit" class="chat-submit" type="submit">
                         <i class="material-icons">send</i>
                     </button>
-                </form>
+                    </form>
+                </div>
             </div>
-        </div>
     </script>
 
     <!-- EVENTS PAGE ----------------------------------------------------------------------------------------------------->
     <script id="events-template" type="text/x-handlebars-template">
-            <ul class="collapsible">
-                <li>
-                    <div class="collapsible-header"><i class="material-icons">filter_drama</i>DOG PARK MEETUP</div>
-                    <div class="collapsible-body">
-                        <div class="card-action right-align"><a
-                                class="event-add btn-floating btn-tiny waves-effect waves-light red"><i
+        <ul class="collapsible">
+            <li>
+                <div class="collapsible-header"><i class="material-icons">filter_drama</i>DOG PARK MEETUP</div>
+                <div class="collapsible-body">
+                    <div class="card-action right-align"><a class="event-add btn-floating btn-tiny waves-effect waves-light red"><i
                                 class="material-icons">add</i></a></div>
-                            <div>09:00 - 12:00</div>
-                            <div>Dog park near house</div>
-                            <div>Dog park party!</div>
-                            <span>This is a description This is a description This is a description This is a description This
+                    <div>09:00 - 12:00</div>
+                    <div>Dog park near house</div>
+                    <div>Dog park party!</div>
+                    <span>This is a description This is a description This is a description This is a description This
                                 is a description This is a description This is a description This is a description </span>
-                    </div>               
-                </li>
-                <li>
-                    <div class="collapsible-header"><i class="material-icons">filter_drama</i>DOG PARK MEETUP</div>
-                    <div class="collapsible-body">
-                        <div class="card-action right-align"><a
-                                class="event-add btn-floating btn-tiny waves-effect waves-light red"><i
+                </div>
+            </li>
+            <li>
+                <div class="collapsible-header"><i class="material-icons">filter_drama</i>DOG PARK MEETUP</div>
+                <div class="collapsible-body">
+                    <div class="card-action right-align"><a class="event-add btn-floating btn-tiny waves-effect waves-light red"><i
                                     class="material-icons">add</i></a></div>
-                        <div>09:00 - 12:00</div>
-                        <div>Dog park near house</div>
-                        <div>Dog park party!</div>
-                        <span>This is a description This is a description This is a description This is a description This
+                    <div>09:00 - 12:00</div>
+                    <div>Dog park near house</div>
+                    <div>Dog park party!</div>
+                    <span>This is a description This is a description This is a description This is a description This
                             is a description This is a description This is a description This is a description </span>
-                    </div>            
-                </li>
-                <li>
-                    <div class="collapsible-header"><i class="material-icons">filter_drama</i>DOG PARK MEETUP</div>
-                    <div class="collapsible-body">
-                        <div class="card-action right-align"><a
-                                class="event-add btn-floating btn-tiny waves-effect waves-light red"><i
+                </div>
+            </li>
+            <li>
+                <div class="collapsible-header"><i class="material-icons">filter_drama</i>DOG PARK MEETUP</div>
+                <div class="collapsible-body">
+                    <div class="card-action right-align"><a class="event-add btn-floating btn-tiny waves-effect waves-light red"><i
                                     class="material-icons">add</i></a></div>
-                        <span>09:00 - 12:00</span>
-                        <span>Dog park near house</span>
-                        <span>Dog park party!</span>
-                        <span>This is a description This is a description This is a description This is a description This
+                    <span>09:00 - 12:00</span>
+                    <span>Dog park near house</span>
+                    <span>Dog park party!</span>
+                    <span>This is a description This is a description This is a description This is a description This
                             is a description This is a description This is a description This is a description </span>
-                    </div>            
-                </li>
-            </ul>
-            <a class="event-create waves-effect waves-light btn-large right">Submit</a>
+                </div>
+            </li>
+        </ul>
+        <a class="event-create waves-effect waves-light btn-large right">Submit</a>
     </script>
     <!-- EVENTS FORM PAGE----------------------------------------------------------------------------------------------------->
     <script id="eventsForm-template" type="text/x-handlebars-template">
