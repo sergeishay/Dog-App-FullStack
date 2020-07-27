@@ -31,12 +31,13 @@ $("#navbar-container").on("click", ".register", () => {
     renderer.renderRegister()
 });
 
-$("#main-container").on("click", ".register-btn", async function() {
+$("#main-container").on("click", ".register-btn", async function(e) {
+    e.preventDefault()
     const firstName = $(this).siblings(".name").find("#register-first").val()
     const lastName = $(this).siblings(".name").find("#register-last").val();
     const email = $(this).siblings(".email").find("input").val();
     const password = $(this).siblings(".password").find("input").val();
-    await navigator.geolocation.getCurrentPosition(async position => {
+    navigator.geolocation.getCurrentPosition(async position => {
         const userLat = position.coords.latitude;
         const userLon = position.coords.longitude;
         const user = { firstName, lastName, password, email, userLat, userLon };
@@ -76,7 +77,7 @@ $("#main-container").on("click", ".edit-profile", async function() {
     const dog = { dogName, dogPicture, breed, weight, favoriteToy, favoriteTreat }
     await apiManager.createNewDog(apiManager.data.mainUser._id, dog)
 
-    geocoder.geocode({ address: address }, async function(result, status) {
+    await geocoder.geocode({ address: address }, async function(result, status) {
         const userLat = result[0].geometry.location.lat();
         const userLon = result[0].geometry.location.lng();
         const fullAddress = result[0].formatted_address.split(", ");
@@ -156,6 +157,7 @@ $(document).ready(function() {
     $("#navbar-container").on("click", ".map", async() => {
         $("#main-container").empty().append("<div id='map'></div>");
         await apiManager.getAllNearbyUsers();
+        renderer.renderAuthNav()
         initMap();
     });
 })
