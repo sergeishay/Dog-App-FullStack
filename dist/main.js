@@ -55,7 +55,7 @@ $("#main-container").on("click", ".register-btn", async function(e) {
     })
 })
 
-$("#main-container").on("click", ".login-btn", function () {
+$("#main-container").on("click", ".login-btn", function() {
     const email = $(this).siblings(".email").find("input").val();
     const password = $(this).siblings(".password").find("input").val();
     const user = JSON.parse(localStorage.getItem("user"));
@@ -72,7 +72,7 @@ $("#navbar-container").on("click", ".profile", () => {
     renderer.renderProfile(apiManager.data.mainUser);
 });
 
-$("#navbar-container").on("click", ".map", async () => {
+$("#navbar-container").on("click", ".map", async() => {
     $("#main-container").empty();
     await apiManager.getAllNearbyUsers();
     initMap();
@@ -119,6 +119,10 @@ $("#main-container").on("click", ".map-profile", async function() {
     const otherUserId = $(this).closest("#iw-container").attr("class");
     await apiManager.getOtherUserById(otherUserId);
     renderer.renderProfile(apiManager.data.otherUser);
+})
+
+$("#navbar-container").on("click", ".events", () => {
+    renderer.renderEvents(apiManager.data.mainUser.event)
 })
 
 function initMap() {
@@ -172,7 +176,7 @@ function initMap() {
             content: content
         })
 
-        marker.addListener('click', function () {
+        marker.addListener('click', function() {
             infowindow.open(marker.get("map"), marker);
         });
     }
@@ -183,21 +187,21 @@ socket.on('messege', message => {
     apiManager.data.messages.push(message)
 })
 
-function ck(){
+function ck() {
     event.preventDefault()
     const name = apiManager.data.mainUser.firstName
     const id = apiManager.data.mainUser._id
     const input = $("#chat-input").val()
     const time = moment().format('LTS')
-    const messageObj = { 
+    const messageObj = {
         id: id,
         name: name,
         input: input,
-        time: time 
+        time: time
     }
     socket.emit('chatMessage', messageObj)
     $("#chat-input").val('')
-}    
+}
 
 $(document).ready(function() {
     $("#navbar-container").on("click", ".map", async() => {
