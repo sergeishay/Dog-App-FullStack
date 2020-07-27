@@ -1,6 +1,6 @@
 const apiManager = new APIManager();
 const renderer = new Renderer();
-const geocoder = new google.maps.Geocoder()
+const geocoder = new google.maps.Geocoder();
 
 const loadPage = () => {
     if (apiManager.checkAuthState()) {
@@ -40,9 +40,9 @@ $("#main-container").on("click", ".register-btn", async function() {
         const userLat = position.coords.latitude;
         const userLon = position.coords.longitude;
         const user = { firstName, lastName, password, email, userLat, userLon };
-        apiManager.createNewUser(user);
+        await apiManager.createNewUser(user);
         localStorage.setItem("user", JSON.stringify(apiManager.data.mainUser));
-        renderer.renderProfileForm(apiManager.data.mainUser)
+        renderer.renderProfileForm(apiManager.data.mainUser);
     })
 })
 
@@ -56,7 +56,7 @@ $("#navbar-container").on("click", ".profile", () => {
 });
 
 $("#main-container").on("click", ".profileEdit-btn", () => {
-    renderer.renderProfileForm(apiManager.data.mainUser);
+    renderer.renderProfileForm();
 });
 
 $("#main-container").on("click", ".edit-profile", async function() {
@@ -76,18 +76,20 @@ $("#main-container").on("click", ".edit-profile", async function() {
     const dog = { dogName, dogPicture, breed, weight, favoriteToy, favoriteTreat }
     await apiManager.createNewDog(apiManager.data.mainUser._id, dog)
 
-    if (address) {
-        geocoder.geocode({ address: address }, async function(result, status) {
-            const userLat = result[0].geometry.location.lat();
-            const userLon = result[0].geometry.location.lng();
-            const fullAddress = result[0].formatted_address.split(", ");
-            const city = fullAddress[0]
-            const country = fullAddress[1]
-            const info = { firstName, lastName, userPicture, radius, aboutMe, userLat, userLon, city, country };
-            renderer.renderProfile(apiManager.getMainUserById(apiManager.data.mainUser._id))
-        })
-    }
-    renderer.renderProfile(apiManager.getMainUserById(apiManager.data.mainUser._id))
+    geocoder.geocode({ address: address }, async function(result, status) {
+        const userLat = result[0].geometry.location.lat();
+        const userLon = result[0].geometry.location.lng();
+        const fullAddress = result[0].formatted_address.split(", ");
+        const city = fullAddress[0]
+        const country = fullAddress[1]
+        const info = { firstName, lastName, userPicture, radius, aboutMe, userLat, userLon, city, country };
+        await apiManager.updateUserProfile(apiManager.data.mainUser._id, info);
+        localStorage.setItem("user", JSON.stringify(apiManager.data.mainUser));
+        $("#main-container").empty().append("<div id='map'></div>");
+        await apiManager.getAllNearbyUsers();
+        renderer.renderAuthNav();
+        initMap();
+    })
 })
 
 function initMap() {
