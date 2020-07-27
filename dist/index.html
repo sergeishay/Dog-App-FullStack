@@ -160,16 +160,23 @@
     <!-- PROFILE PAGE-------------------------------------------------------------------------------------------------- -->
     <script id="profile-template" type="text/x-handlebars-template">
         <div class="card-panel">
-            <a><img class="profile-picture" src="{{userPicture}}"></a>
+            <a><img class="profile-picture" src="{{userPicture}}" onerror="this.src='https://www.shvilhalev.co.il/wp-content/uploads/2018/07/default-user-image-300x300.png'"></a>
             <div class='profile-name'>{{firstName}} {{lastName}}</div>
         </div>
         <div class="profile-container row">
             <div class="col s12 m6 l6">
                 <div class="profile-card card">
+                    {{#if address.city}}
                     <div class='profile-location'><i class="material-icons">location_on</i>{{address.city}}, {{address.country}}</div>
                     <p class='profile-aboutme'>{{aboutMe}}</p>
+                    {{/if}}
+                    {{#unless address.city}}
+                    <div class='profile-location'><i class="material-icons">location_on</i>City, Country</div>
+                    <p class='profile-aboutme'>Please describe yourself so people can get to know you and your dogs!</p>
+                    {{\unless}}
                 </div>
             </div>
+            {{#if dogs}}
             {{#each dogs}}
             <div class="col s12 m6 l6">
                 <div class="profile-card card">
@@ -184,6 +191,21 @@
                 </div>
             </div>
             {{/each}}
+            {{/if}}
+            {{#unless dogs}}
+            <div class="col s12 m6 l6">
+                <div class="profile-card card">
+                    <a><img class="profile-dog-picture circle" src="{{dogPicture}}" onerror="this.src='https://www.shvilhalev.co.il/wp-content/uploads/2018/07/default-user-image-300x300.png'"></a>
+                    <div class='profile-dog-name'>Your dog's name here!</div>
+                    <div class='profile-dog-text'>
+                        <div class='profile-breed'><i class="fas fa-paw"></i>&nbsp&nbsp&nbsp Dog breed</div>
+                        <div class='profile-weight'><i class="fas fa-weight"></i>&nbsp&nbsp&nbsp Dog weight</div>
+                        <div class='profile-toy'><i class="fas fa-shapes"></i>&nbsp&nbsp&nbsp Favorite Toy</div>
+                        <div class='profile-treat'><i class="fas fa-bone"></i>&nbsp&nbsp&nbsp Favorite Treat</div>
+                    </div>
+                </div>
+            </div>
+            {{/unless}}
         </div>
     </div>
     <!-- CHAT------------------------------------------------------------------ -->
