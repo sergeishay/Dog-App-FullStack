@@ -68,7 +68,7 @@ const initMap = () => {
     const contentArr = []
     for (let i = 0; i < apiManager.data.users.length; i++) {
         let marker = new google.maps.Marker({
-            position: new google.maps.LatLng(apiManager.data.users[i].lat, apiManager.data.users[i].lon),
+            position: new google.maps.LatLng(apiManager.data.users[i].userLat, apiManager.data.users[i].userLon),
             map: map,
             title: apiManager.data.users[i].dog.name,
             icon: "assets/download1.png"

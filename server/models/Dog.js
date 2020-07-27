@@ -7,8 +7,8 @@ const dogsSchema = new Schema({
     rating: Number,
     weight: Number,
     dogOwner: [{type: Schema.Types.ObjectId, ref: 'User'}],
-    favoriteToys : [],
-    favoriteTreats:[],
+    favoriteToy : String,
+    favoriteTreat: String,
     dogPicture: String,
     breed: String
 })

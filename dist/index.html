@@ -160,29 +160,30 @@
     <!-- PROFILE PAGE-------------------------------------------------------------------------------------------------- -->
     <script id="profile-template" type="text/x-handlebars-template">
         <div class="card-panel">
-            <a><img class="profile-picture" src="assets/portrait.jpg"></a>
-            <div class='profile-name'>Jane Doe</div>
+            <a><img class="profile-picture" src="{{userPicture}}"></a>
+            <div class='profile-name'>{{firstName}} {{lastName}}</div>
         </div>
         <div class="profile-container row">
             <div class="col s12 m6 l6">
                 <div class="profile-card card">
-                    <div class='profile-location'><i class="material-icons">location_on</i>Tel Aviv, Israel</div>
-                    <p class='profile-aboutme'>I am a very simple card. I am good at containing small bits of information.
-                        I am convenient because I require little markup to use effectively.</p>
+                    <div class='profile-location'><i class="material-icons">location_on</i>{{address.city}}, {{address.country}}</div>
+                    <p class='profile-aboutme'>{{aboutMe}}</p>
                 </div>
             </div>
+            {{#each dogs}}
             <div class="col s12 m6 l6">
                 <div class="profile-card card">
-                    <a><img class="profile-dog-picture circle" src="assets/download.jpg"></a>
-                    <div class='profile-dog-name'>Lucky</div>
+                    <a><img class="profile-dog-picture circle" src="{{dogPicture}}"></a>
+                    <div class='profile-dog-name'>{{dogName}}</div>
                     <div class='profile-dog-text'>
-                        <div class='profile-breed'><i class="fas fa-paw"></i>&nbsp&nbsp&nbsp Golden Retriever</div>
-                        <div class='profile-weight'><i class="fas fa-weight"></i>&nbsp&nbsp&nbsp 30kg</div>
-                        <div class='profile-toy'><i class="fas fa-shapes"></i>&nbsp&nbsp&nbsp Squeaky ball</div>
-                        <div class='profile-treat'><i class="fas fa-bone"></i>&nbsp&nbsp&nbsp Milk bone</div>
+                        <div class='profile-breed'><i class="fas fa-paw"></i>&nbsp&nbsp&nbsp {{breed}}</div>
+                        <div class='profile-weight'><i class="fas fa-weight"></i>&nbsp&nbsp&nbsp {{weight}}</div>
+                        <div class='profile-toy'><i class="fas fa-shapes"></i>&nbsp&nbsp&nbsp {{favoriteToy}}</div>
+                        <div class='profile-treat'><i class="fas fa-bone"></i>&nbsp&nbsp&nbsp {{favoriteTreat}}</div>
                     </div>
                 </div>
             </div>
+            {{/each}}
         </div>
     </div>
     <!-- CHAT------------------------------------------------------------------ -->
