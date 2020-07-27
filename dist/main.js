@@ -2,15 +2,20 @@ const apiManager = new APIManager();
 const renderer = new Renderer();
 const geocoder = new google.maps.Geocoder();
 
-const loadPage = () => {
+const loadPage = async() => {
     if (apiManager.checkAuthState()) {
+        const user = JSON.parse(localStorage.getItem("user"))
+        await apiManager.getMainUserById(user._id)
         renderer.renderAuthNav(apiManager.data.mainUser);
-        apiManager.getMainUserById(JSON.parse(localStorage.getItem("user"))._id)
     } else {
-        renderer.renderNonAuthNav("");
+        renderer.renderNonAuthNav();
     }
-    renderer.renderLandingPage("")
+    renderer.renderLandingPage()
 }
+
+$("#navbar-container").on("click", ".events", () => {
+    renderer.renderEvent(apiManager.data.mainUser.event);
+})
 
 $("#navbar-container").on("click", ".logout", () => {
     apiManager.data.mainUser = {}
