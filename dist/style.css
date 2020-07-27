@@ -5,7 +5,6 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
-    overflow: hidden;
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -51,8 +50,10 @@ body {
     cursor: pointer;
 }
 
-
-/* ------------------ */
+nav{
+    background-color: #16a085;
+}
+/* MAP_______________________________________________________________________------------------ */
 
 .map-image {
     border-radius: 100%;
@@ -141,7 +142,99 @@ body {
     background: -ms-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
 }
 
-
+/* HOME PAGE ____________________________________________________________________________*/
+#header {
+    width: 100vw;
+    height: 95vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('https://www.purina.co.uk/sites/g/files/mcldtz2481/files/2018-08/shutterstock_382462741_2.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .header-text {
+    width: 500px;
+    text-align: center;
+  }
+  
+  #header h1 {
+    margin-bottom: 10px;
+    font-family: League Spartan, sans-serif;
+    font-weight: 500;
+    font-size: 45px;
+    color: white;
+  }
+  
+  #photography {
+    font-size: 60px;
+    letter-spacing: 0.5px;
+  }
+  
+  #header #p {
+    margin-bottom: 20px;
+    font-family: 'Open Sans', Helvetica, sans-serif;
+    color: white;
+    font-size: 18px;
+  }
+  
+  #header .home-btn {
+    border: 2px solid white;
+    color: white;
+    font-family: 'Roboto', Segoe UI, calibri, Helvetica, serif;
+    padding: 10px;
+    font-size: 18px;
+    width: 160px;
+    border-radius: 500px;
+    cursor: pointer;
+    background-color: transparent;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  #header .home-btn:hover, .home-btn:active {
+    background-color: white;
+    color: black;
+  }
+  
+  @media screen and (max-width: 676px) {
+    .header-text {
+      width: 95%;
+      text-align: center;
+    }
+  }
+  
+  @media screen and (max-width: 601px) {
+    #photography {
+      font-size: 45px;
+    }
+    #header h1 {
+      font-size: 30px;
+    }
+    #header #p {
+      font-size: 15px;
+      width: 85%;
+      display: block;
+      margin: auto;
+      margin-bottom: 20px;
+    }
+    #header .home-btn {
+      font-size: 16px;
+      width: 140px;
+    }
+  }
+  
+  @media screen and (max-width: 460px) {
+    #photography {
+      font-size: 35px;
+    }
+    #header h1 {
+      font-size: 28px;
+    }
+  }
 /* LOG-IN PAGE---------------------------------------------------------------- */
 
 h5 {
@@ -267,9 +360,10 @@ h5 {
 
 .card-panel {
     transition: box-shadow .25s;
-    height: 123px;
+    height: 170px;
     border-radius: 2px;
-    background-color: #fff;
+    margin: 0;
+    background-color: #1abc9c;
 }
 
 .profile-picture {
@@ -277,11 +371,14 @@ h5 {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 173px;
+    object-fit: cover;
+    width:200px;
+    height:200px;
+    border: 8px solid #f5f5f5;
 }
 
 .profile-container {
-    top: 136px;
+    top: 93px;
     position: relative;
 }
 
@@ -297,7 +394,7 @@ h5 {
     .profile-card {
         padding: 25px 20px 20px 20px;
         background-color: #f5f5f5;
-        height: 250;
+        height: 294px;
     }
 }
 
@@ -312,12 +409,15 @@ h5 {
 .profile-dog-picture {
     height: auto;
     width: 121px;
-    top: -9px;
-    left: -4px;
+    top: -12px;
+    left: -14px;
     position: relative;
     display: inline-block;
     z-index: 2;
-    border: white 2px solid;
+    border: white 3px solid;
+    object-fit: cover;
+    width: 140px;
+    height: 140px;
 }
 
 .profile-aboutme {
@@ -334,12 +434,14 @@ h5 {
     font-size: 22px;
     position: relative;
     color: rgba(124, 124, 124, 0.986);
-    border-bottom: 5px solid #ee6e73;
+    border: 5px solid #16a085;
+    color: white;
+    background-color: #16a085;
 }
 
 .profile-dog-text {
     color: rgba(124, 124, 124, 0.986);
-    font-size: 16px;
+    font-size: 19px;
     top: -34px;
     position: relative;
     display: grid;
@@ -355,8 +457,11 @@ h5 {
     font-size: 25px;
     z-index: 1;
     position: relative;
-    color: rgba(124, 124, 124, 0.986);
-    border-bottom: 5px solid #ee6e73;
+    border: 5px solid #16a085;
+    color: white;
+    background-color: #16a085;
+    padding-right: 10px;
+
 }
 
 p {
@@ -404,7 +509,7 @@ body {
 @media screen and (max-width: 601px) {
     #chat-circle {
         position: fixed;
-        bottom: 10px;
+        bottom: 19px;
         right: 21px;
         background: #5A5EB9;
         width: 60px;
@@ -576,10 +681,11 @@ body {
 
 @media screen and (max-width: 601px) {
     .chat-icon {
-        font-size: 3.3rem;
-        left: -6px;
+        font-size: 44px !important;
+        left: -19px;
         position: relative;
         bottom: 14px;
+        right: 9px;
         line-height: inherit;
     }
 }
@@ -587,8 +693,10 @@ body {
 @media screen and (min-width: 601px) {
     .chat-icon {
         font-size: 3.3rem;
+        font-size: 44px !important;
         position: relative;
         bottom: 4px;
+        right: 9px;
         line-height: inherit;
     }
 }
