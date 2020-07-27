@@ -141,12 +141,12 @@ function initMap() {
 
         let contentString =
             `<div class="${apiManager.data.users[i]._id}" id="iw-container">` +
-            `<div class="iw-title"><img src="${apiManager.data.users[i].dogs[0].dogPicture}" onerror="this.src='https://www.shvilhalev.co.il/wp-content/uploads/2018/07/default-user-image-300x300.png'" "class="map-image" height="80" width="80">` +
+            `<div class="iw-title"><img src="${apiManager.data.users[i].dogs[0].dogPicture}" onerror="this.src='https://www.shvilhalev.co.il/wp-content/uploads/2018/07/default-user-image-300x300.png'" class="map-image" height="80" width="80">` +
             `<div class="iw-name">${apiManager.data.users[i].dogs[0].dogName}</div>` +
             '</div>' +
             '<div class="iw-content">' +
             `<div class="iw-subTitle">${apiManager.data.users[i].dogs[0].breed}</div>` +
-            `<p>${apiManager.data.users[i].dogs[0].favoriteToy}<br>${apiManager.data.users[i].dogs[0].favoriteTreat}</p>` +
+            `<p class='iw-moreinfo'><i class="fas fa-dog"></i>&nbsp&nbsp&nbsp${apiManager.data.users[i].dogs[0].favoriteToy}<br><i class="fas fa-bone"></i>&nbsp&nbsp&nbsp${apiManager.data.users[i].dogs[0].favoriteTreat}</p>` +
             '<button class="map-profile">Profile</button>' +
             '</div>' +
             '<div class="iw-bottom-gradient"></div>' +

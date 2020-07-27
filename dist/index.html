@@ -178,7 +178,7 @@
                     <div class='profile-dog-name'>{{dogName}}</div>
                     <div class='profile-dog-text'>
                         <div class='profile-breed'><i class="fas fa-paw"></i>&nbsp&nbsp&nbsp {{breed}}</div>
-                        <div class='profile-weight'><i class="fas fa-weight"></i>&nbsp&nbsp&nbsp {{weight}}</div>
+                        <div class='profile-weight'><i class="fas fa-weight"></i>&nbsp&nbsp&nbsp {{weight}}kg</div>
                         <div class='profile-toy'><i class="fas fa-shapes"></i>&nbsp&nbsp&nbsp {{favoriteToy}}</div>
                         <div class='profile-treat'><i class="fas fa-bone"></i>&nbsp&nbsp&nbsp {{favoriteTreat}}</div>
                     </div>
@@ -269,7 +269,7 @@
     <!-- PROFILE EDIT FORM ----------------------------------------------------------------------------- -->
     <script id="profileEdit-template" type="text/x-handlebars-template">
         <div id='profileEdit-container'>
-            <h5>Edit your profile</h5>
+            <h6>Edit your profile</h6>
             <div class="row photo">
                 <div class="input-field col l4 m4 s12">
                     <input class="user-photo validate" placeholder="Picture URL here" type="text">
@@ -286,13 +286,11 @@
                 <div class="input-field col l4 m4 s12">
                     <input class="user-location validate" placeholder="Location" type="text">
                 </div>
-                <div class="col l4 m4 s12">
-                    <label class='radius' for="title">Max Meet-up Distance (km)</label>
+                <div class="col l2 m2 s6">
+                    <label class='radius' for="title">Max Meet-up Distance (m)</label>
                 </div>
-                <div class="input-field col l4 m4 s12">
-                    <p class="range-field">
-                        <input class='user-radius' type="range" id="test5" min="0" max="2000" value="400" step="100" />
-                    </p>
+                <div class="input-field col l2 m2 s12">
+                    <input class="user-radius validate" value="300" type="number">
                 </div>
             </div>
             <div class="row about">
@@ -300,8 +298,7 @@
                     <input class="user-about validate" placeholder="About yourself" type="text">
                 </div>
             </div>
-            <br>
-            <h5>Now about your dog...</h5>
+            <h6>Now about your dog...</h6>
             <div class="row dogPhoto">
                 <div class="input-field col l4 m4 s12">
                     <input class="user-dog-photo validate" placeholder="Picture URL here" type="text">
@@ -314,17 +311,8 @@
                 </div>
             </div>
             <div class="row weight">
-                <div class="user-dog-weight input-field col l4 m4 s122">
-                    <select>
-                    <option value="">Weight</option>
-                    <option value="1">
-                        < 4kg</option>
-                    <option value="2">4 - 7kg</option>
-                    <option value="3">7 - 11kg</option>
-                    <option value="4">11 - 18kg</option>
-                    <option value="5">18 - 27kg</option>
-                    <option value="5">> 27kg </option>
-                </select>
+                <div class="input-field col l4 m4 s12">
+                    <input class="user-dog-weight validate" placeholder="Weight" type="number">
                 </div>
                 <div class="input-field col l4 m4 s12">
                     <input class="user-dog-toy validate" placeholder="Favorite toy" type="text">
@@ -339,7 +327,7 @@
     <!-- EVENTS FORM PAGE----------------------------------------------------------------------------------------------------->
     <script id="eventsForm-template" type="text/x-handlebars-template">
         <div id='container'>
-            <h5>Create your event</h5>
+            <h6>Create your event</h6>
             <div class="row">
                 <div class="input-field col s12">
                     <input class="event-title event-input" placeholder="Event title" type="text">
@@ -402,13 +390,13 @@
 
     <script src="./handlebars/dist/handlebars.js"></script>
     <script src="./jquery/dist/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZAMd5ujixxcusvcP1f8SCsSVDcQaZp-o"></script>
     <!-- <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> -->
     <script src="renderer.js"></script>
     <script src="apiManager.js"></script>
     <script src="main.js"></script>
-
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
     <script>
         $(".button-collapse").sideNav()
     </script>
