@@ -7,7 +7,7 @@ class APIManager {
         };
     }
     getMainUserById = async userId => {
-        this.data.mainUser = await $.get(`user/${userId}`)
+        this.data.mainUser = await $.get(`/user/${userId}`)
     }
     createNewUser = async user => {
         this.data.mainUser = await $.post("/user", user);
