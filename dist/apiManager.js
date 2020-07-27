@@ -4,6 +4,7 @@ class APIManager {
             mainUser: {},
             users: [],
             events: [],
+            messages:[],
             otherUser: {},
         };
     }

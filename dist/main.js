@@ -1,5 +1,6 @@
 const apiManager = new APIManager();
 const renderer = new Renderer();
+const socket = io();
 const geocoder = new google.maps.Geocoder();
 
 const loadPage = async() => {
@@ -65,7 +66,7 @@ $("#main-container").on("click", ".login-btn", function() {
     const user = JSON.parse(localStorage.getItem("user"));
     if (email === user.email && password === user.password) {
         apiManager.data.mainUser = user;
-        renderer.renderAuthNav();
+        renderer.renderAuthNav(apiManager.data.mainUser);
         renderer.renderProfile(apiManager.data.mainUser);
     } else {
         prompt("Username or password is not correct :(")
@@ -76,8 +77,14 @@ $("#navbar-container").on("click", ".profile", () => {
     renderer.renderProfile(apiManager.data.mainUser);
 });
 
+$("#navbar-container").on("click", ".map", async() => {
+    $("#main-container").empty();
+    await apiManager.getAllNearbyUsers();
+    initMap();
+})
+
 $("#main-container").on("click", ".profileEdit-btn", () => {
-    renderer.renderProfileForm();
+    renderer.renderProfileForm(apiManager.data.mainUser);
 });
 
 $("#main-container").on("click", ".edit-profile", async function() {
@@ -108,7 +115,7 @@ $("#main-container").on("click", ".edit-profile", async function() {
         localStorage.setItem("user", JSON.stringify(apiManager.data.mainUser));
         $("#main-container").empty().append("<div id='map'></div>");
         await apiManager.getAllNearbyUsers();
-        renderer.renderAuthNav();
+        renderer.renderAuthNav(apiManager.data.mainUser);
         initMap();
     })
 })
@@ -117,6 +124,10 @@ $("#main-container").on("click", ".map-profile", async function() {
     const otherUserId = $(this).closest("#iw-container").attr("class");
     await apiManager.getOtherUserById(otherUserId);
     renderer.renderProfile(apiManager.data.otherUser);
+})
+
+$("#navbar-container").on("click", ".events", () => {
+    renderer.renderEvents(apiManager.data.mainUser.event)
 })
 
 function initMap() {
@@ -176,15 +187,35 @@ function initMap() {
     }
 }
 
+socket.on('messege', message => {
+    renderer.renderChatMessage(message)
+    apiManager.data.messages.push(message)
+})
 
-loadPage();
+function ck() {
+    event.preventDefault()
+    const name = apiManager.data.mainUser.firstName
+    const id = apiManager.data.mainUser._id
+    const input = $("#chat-input").val()
+    const time = moment().format('LTS')
+    const messageObj = {
+        id: id,
+        name: name,
+        input: input,
+        time: time
+    }
+    socket.emit('chatMessage', messageObj)
+    $("#chat-input").val('')
+}
 
 $(document).ready(function() {
     $("#navbar-container").on("click", ".map", async() => {
         $("#main-container").empty().append("<div id='map'></div>");
         await apiManager.getMainUserById(JSON.parse(localStorage.getItem("user"))._id)
         await apiManager.getAllNearbyUsers();
-        renderer.renderAuthNav()
+        renderer.renderAuthNav(apiManager.data.mainUser)
         initMap();
     });
 })
+
+loadPage()
