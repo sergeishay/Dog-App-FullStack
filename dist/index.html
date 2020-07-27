@@ -1,13 +1,14 @@
 <html>
 
 <head>
-    <title>Puppy Pals</title>
+    <title>PuppyPals</title>
     <meta name="viewport" content="width = device-width, initial-scale = 1">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
 
 <body>
@@ -27,13 +28,12 @@
     <script id="authNav-template" type="text/x-handlebars-template">
         <nav>
             <div class="nav-wrapper">
-                <a id="logo-container" class="brand-logo center">Puppy Pals</a>
+                <a id="logo-container" class="brand-logo center">PuppyPals</a>
                 <a data-activates="mobile-demo" class="button-collapse"><i class="material-icons menu">menu</i></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a class='profile'>My Profile</a></li>
+                    <li><a class='profile'>Profile</a></li>
                     <li><a class='map'>Map</a></li>
                     <li><a class='events'>Events</a></li>
-                    <li><a class='about'>About</a></li>
                     <li><a class='logout'>Logout</a></li>
                 </ul>
                 <ul id="mobile-demo" class="side-nav">
@@ -43,11 +43,10 @@
                             <a><span class="white-text">{{firstName}} {{lastName}}</span></a>
                         </div>
                     </li>
-                    <li><a class="profile waves-effect ">My Profile</a></li>
+                    <li><a class="profile waves-effect ">Profile</a></li>
                     <li><a class="map waves-effect">Map</a></li>
                     <li><a class="events waves-effect">Events</a></li>
                     <div class="divider"></div>
-                    <li><a class="about waves-effect">About Us</a></li>
                     <li><a class="logout waves-effect">Logout</a></li>
                 </ul>
             </div>
@@ -75,10 +74,16 @@
     </script>
     <!-- HOME PAGE -->
     <script id="home-template" type="text/x-handlebars-template">
-        <div>
-            <img src="http://www.apimages.com/Images/Ap_Creative_Stock_Header.jpg" alt="">
-            <button class="home-btn">Get Started!</button>
-        </div>
+        <header id='header'>
+            <div class="header-text">
+            <h1> MUST LOVE <br><span id="photography"> DOGS. </span></h1>
+            <p id='p'> PuppyPals is a free dog social networking app designed to 
+                connect nearby dogs and dog owners! We are a furry friend 
+                focussed community, and strive to give dog owners endless 
+                opportunities to socialize their dogs and other dog lovers. </p>
+            <button class="home-btn"> Start Now! </button>
+            </div>
+          </header>
     </script>
     <!-- LOGIN PAGE/REGISTRATION ----------------------------------------------------------------------------------------->
     <script id="login-template" type="text/x-handlebars-template">
@@ -114,118 +119,139 @@
     <script id="register-template" type="text/x-handlebars-template">
 
         <!-- register page ------------------------------------------------------>
-        <div class="container white z-depth-2">
-            <ul class="tabs teal">
-                <li class="tab col s3"><a class="white-text login" href="#login">login</a></li>
-                <li class="tab col s3"><a class="white-text active register" href="#register">register</a></li>
-            </ul>
-            <div id="register" class="col s12">
-                <form class="col s12">
-                    <div class="form-container">
-                        <h3 class="teal-text">Join Us!</h3>
-                        <div class="row name">
-                            <div class="register-input-field col s6">
-                                <input id="register-first" type="text" class="validate">
-                                <label for="last_name">First Name</label>
-                            </div>
-                            <div class="register-input-field col s6">
-                                <input id="register-last" type="text" class="validate">
-                                <label for="last">Last Name</label>
-                            </div>
+    <div class="container white z-depth-2">
+        <ul class="tabs teal">
+            <li class="tab col s3"><a class="white-text login" href="#login">login</a></li>
+            <li class="tab col s3"><a class="white-text active register" href="#register">register</a></li>
+        </ul>
+        <div id="register" class="col s12">
+            <form class="col s12">
+                <div class="form-container">
+                    <h3 class="teal-text">Join Us!</h3>
+                    <div class="row name">
+                        <div class="register-input-field col s6">
+                            <input id="register-first" type="text" class="validate">
+                            <label for="last_name">First Name</label>
                         </div>
-                        <div class="row email">
-                            <div class="register-input-field col s12">
-                                <input id="register-email" type="email" class="validate">
-                                <label for="email">Email</label>
-                            </div>
+                        <div class="register-input-field col s6">
+                            <input id="register-last" type="text" class="validate">
+                            <label for="last">Last Name</label>
                         </div>
-                        <div class="row password">
-                            <div class="register-input-field col s12">
-                                <input id="register-password" type="password" class="validate">
-                                <label for="password">Password</label>
-                            </div>
-                        </div>
-                        <button class="register-btn btn waves-effect waves-light teal" type="submit" name="action">Submit</button>
                     </div>
-                </form>
-            </div>
+                    <div class="row email">
+                        <div class="register-input-field col s12">
+                            <input id="register-email" type="email" class="validate">
+                            <label for="email">Email</label>
+                        </div>
+                    </div>
+                    <div class="row password">
+                        <div class="register-input-field col s12">
+                            <input id="register-password" type="password" class="validate">
+                            <label for="password">Password</label>
+                        </div>
+                    </div>
+                    <button class="register-btn btn waves-effect waves-light teal" type="submit"
+                        name="action">Submit</button>
+                </div>
+            </form>
         </div>
+    </div>
     </script>
     <!-- PROFILE PAGE-------------------------------------------------------------------------------------------------- -->
     <script id="profile-template" type="text/x-handlebars-template">
-        <div class='container'>
-            <div class="card-panel grey lighten-4">
-                <a><img class="profile-picture circle" src="{{userPicture}}" /></a>
-                <div class='profile-name'>{{firstName}} {{lastName}}</div>
+        <div class="card-panel">
+            <a><img class="profile-picture" src="assets/portrait.jpg"></a>
+            <div class='profile-name'>Jane Doe</div>
+        </div>
+        <div class="profile-container row">
+            <div class="col s12 m6 l6">
+                <div class="profile-card card">
+                    <div class='profile-location'><i class="material-icons">location_on</i>Tel Aviv, Israel</div>
+                    <p class='profile-aboutme'>I am a very simple card. I am good at containing small bits of information.
+                        I am convenient because I require little markup to use effectively.</p>
+                </div>
             </div>
-            <div class="profile-container row">
-                <div class="col s12 m6 l6">
-                    <div class="profile-card card">
-                        <div class='profile-location'><i class="material-icons">location_on</i>{{lat}} {{lon}}</div>
-                        <p class='profile-aboutme'>{{aboutMe}}</p>
+            <div class="col s12 m6 l6">
+                <div class="profile-card card">
+                    <a><img class="profile-dog-picture circle" src="assets/download.jpg"></a>
+                    <div class='profile-dog-name'>Lucky</div>
+                    <div class='profile-dog-text'>
+                        <div class='profile-breed'><i class="fas fa-paw"></i>&nbsp&nbsp&nbsp Golden Retriever</div>
+                        <div class='profile-weight'><i class="fas fa-weight"></i>&nbsp&nbsp&nbsp 30kg</div>
+                        <div class='profile-toy'><i class="fas fa-shapes"></i>&nbsp&nbsp&nbsp Squeaky ball</div>
+                        <div class='profile-treat'><i class="fas fa-bone"></i>&nbsp&nbsp&nbsp Milk bone</div>
                     </div>
                 </div>
-                {{#each dogs}}
-                <div class="col s12 m6 l6">
-                    <div class="profile-card card">
-                        <a><img class="profile-dog-picture circle" src="{{dogPicture}}" /></a>
-                        <div class='profile-dog-name'>{{dogName}}</div>
-                        <div class='profile-dog-text'>
-                            <div class='profile-breed'><i class="fas fa-paw"></i>&nbsp&nbsp&nbsp {{breed}}</div>
-                            <div class='profile-weight'><i class="fas fa-weight"></i>&nbsp&nbsp&nbsp {{weight}}</div>
-                            <div class='profile-toy'><i class="fas fa-shapes"></i>&nbsp&nbsp&nbsp {{favoriteToys}}</div>
-                            <div class='profile-treat'><i class="fas fa-bone"></i>&nbsp&nbsp&nbsp {{favoriteTreats}}</div>
-                        </div>
-                    </div>
-                </div>
-                {{/each}}
             </div>
         </div>
-        <div id="body">
-            <div id="chat-circle" class=".chat-icon large btn btn-raised">
-                <div id="chat-overlay"></div>
-                <i class=".chat-icon material-icons large">chat</i>
-            </div>
-            <div class="chat-box">
-                <div class="chat-box-header">
-                    Chat
-                    <span class="chat-box-toggle"><i class="material-icons">close</i></span></div>
-                <div class="chat-box-overlay"></div>
-                <div class="chat-logs"></div>
-                <div class="chat-input">
-                    <form>
-                        <input id="chat-input" type="text" placeholder="Send a message..." />
-                        <button id="chat-submit" class="chat-submit" type="submit">
+    </div>
+    <!-- CHAT------------------------------------------------------------------ -->
+    <div id="body">
+        <div id="chat-circle" class="large btn btn-raised">
+            <div id="chat-overlay"></div>
+            <i class="chat-icon material-icons large">chat</i>
+        </div>
+        <div class="chat-box">
+            <div class="chat-box-header">
+                Chat
+                <span class="chat-box-toggle"><i class="material-icons">close</i></span></div>
+            <div class="chat-box-overlay"></div>
+            <div class="chat-logs"></div>
+            <div class="chat-input">
+                <form>
+                    <input id="chat-input" type="text" placeholder="Send a message..." />
+                    <button id="chat-submit" class="chat-submit" type="submit">
                         <i class="material-icons">send</i>
                     </button>
-                    </form>
-                </div>
+                </form>
             </div>
         </div>
     </script>
 
     <!-- EVENTS PAGE ----------------------------------------------------------------------------------------------------->
     <script id="events-template" type="text/x-handlebars-template">
-        <div class='container'>
             <ul class="collapsible">
-                {{#each events}}
                 <li>
-                    <div class="collapsible-header"><i class="material-icons">filter_drama</i>FIRST EVENT TITLE</div>
+                    <div class="collapsible-header"><i class="material-icons">filter_drama</i>DOG PARK MEETUP</div>
                     <div class="collapsible-body">
-                        <div class="card-action right-align"><a class="event-add btn-floating btn-tiny waves-effect waves-light red"><i
+                        <div class="card-action right-align"><a
+                                class="event-add btn-floating btn-tiny waves-effect waves-light red"><i
                                 class="material-icons">add</i></a></div>
-                        <span>{{eventName}}</span>
-                        <span>{{startTime}}</span>
-                        <span>{{address}}</span>
-                        <span>{{endTime}}</span>
-                        <span>{{type}}</span>
-                        <span>{{description}}</span>
-                    </div>
+                            <div>09:00 - 12:00</div>
+                            <div>Dog park near house</div>
+                            <div>Dog park party!</div>
+                            <span>This is a description This is a description This is a description This is a description This
+                                is a description This is a description This is a description This is a description </span>
+                    </div>               
                 </li>
-                {{/Each}}
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">filter_drama</i>DOG PARK MEETUP</div>
+                    <div class="collapsible-body">
+                        <div class="card-action right-align"><a
+                                class="event-add btn-floating btn-tiny waves-effect waves-light red"><i
+                                    class="material-icons">add</i></a></div>
+                        <div>09:00 - 12:00</div>
+                        <div>Dog park near house</div>
+                        <div>Dog park party!</div>
+                        <span>This is a description This is a description This is a description This is a description This
+                            is a description This is a description This is a description This is a description </span>
+                    </div>            
+                </li>
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">filter_drama</i>DOG PARK MEETUP</div>
+                    <div class="collapsible-body">
+                        <div class="card-action right-align"><a
+                                class="event-add btn-floating btn-tiny waves-effect waves-light red"><i
+                                    class="material-icons">add</i></a></div>
+                        <span>09:00 - 12:00</span>
+                        <span>Dog park near house</span>
+                        <span>Dog park party!</span>
+                        <span>This is a description This is a description This is a description This is a description This
+                            is a description This is a description This is a description This is a description </span>
+                    </div>            
+                </li>
             </ul>
             <a class="event-create waves-effect waves-light btn-large right">Submit</a>
-        </div>
     </script>
     <!-- EVENTS FORM PAGE----------------------------------------------------------------------------------------------------->
     <script id="eventsForm-template" type="text/x-handlebars-template">
@@ -302,7 +328,22 @@
     <script>
         $(".button-collapse").sideNav()
     </script>
+    <script>
+        $("#main-container").on("click", ".collapsible", () => {
+            $('.collapsible').collapsible();
+        });
+    </script>
+    <script>
+        $("#main-container").on("click", "#chat-circle", () => {
+            $("#chat-circle").toggle('scale');
+            $(".chat-box").toggle('scale');
+        })
 
+        $("#main-container").on("click", ".chat-box-toggle", () => {
+            $("#chat-circle").toggle('scale');
+            $(".chat-box").toggle('scale');
+        })
+    </script>
 </body>
 
 </html>
