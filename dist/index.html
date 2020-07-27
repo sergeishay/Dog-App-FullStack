@@ -42,7 +42,7 @@
                             <a><span class="white-text">{{firstName}} {{lastName}}</span></a>
                         </div>
                     </li>
-                    <li><a class="profile waves-effect ">Profile</a></li>
+                    <li><a class="profile waves-effect">Profile</a></li>
                     <li><a class="map waves-effect">Map</a></li>
                     <li><a class="events waves-effect">Events</a></li>
                     <div class="divider"></div>
@@ -52,7 +52,7 @@
         </nav>
     </script>
 
-    
+
     <!-- NAV BAR Not Authenticated------------------------------------------------------------- -->
     <script id="nonAuthNav-template" type="text/x-handlebars-template">
         <nav>
@@ -407,14 +407,16 @@
     <script src="renderer.js"></script>
     <script src="apiManager.js"></script>
     <script src="main.js"></script>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
     <script>
-        $(".button-collapse").sideNav()
+        $("#navbar-container").on("click", ".button-collapse", function() {
+            $(this).sideNav()
+        })
     </script>
     <script>
-        $("#main-container").on("click", ".collapsible", () => {
-            $('.collapsible').collapsible();
+        $("#main-container").on("click", ".collapsible", function() {
+            $(this).collapsible();
         });
     </script>
     <script>
@@ -428,7 +430,7 @@
             $(".chat-box").toggle('scale');
         })
 
-        
+
         $("#main-container").on("click", ".chat-box-toggle", () => {
             $("#chat-circle").toggle('scale');
             $(".chat-box").toggle('scale');

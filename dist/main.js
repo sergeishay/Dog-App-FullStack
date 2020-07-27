@@ -5,13 +5,18 @@ const geocoder = new google.maps.Geocoder();
 
 const loadPage = async() => {
     if (apiManager.checkAuthState()) {
-        await apiManager.getMainUserById(JSON.parse(localStorage.getItem("user"))._id)
+        const user = JSON.parse(localStorage.getItem("user"))
+        await apiManager.getMainUserById(user._id)
         renderer.renderAuthNav(apiManager.data.mainUser);
     } else {
-        renderer.renderNonAuthNav("");
+        renderer.renderNonAuthNav();
     }
-    renderer.renderLandingPage("")
+    renderer.renderLandingPage()
 }
+
+$("#navbar-container").on("click", ".events", () => {
+    renderer.renderEvent(apiManager.data.mainUser.event);
+})
 
 $("#navbar-container").on("click", ".logout", () => {
     apiManager.data.mainUser = {}
