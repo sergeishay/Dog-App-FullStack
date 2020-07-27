@@ -112,4 +112,5 @@ class APIManager {
             })(marker, i));
         }
     }
+
 }
