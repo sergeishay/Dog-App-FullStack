@@ -31,8 +31,15 @@ class Renderer {
     renderEventForm = (events) => {
         this.makeHandlebar("#eventsForm-template", '#main-container', events)
     }
+
     renderChatMessage =(msg) => {
         this.makeHandlebarForChat("#message-template", '.chat-logs', msg)
+    }
+
+    
+    renderProfileForm = () => {
+        this.makeHandlebar("profileEdit-template", '#main-container', null)
+
     }
 }
 
