@@ -29,22 +29,24 @@ io.on('connection', socket => {
     socket.on('disconnect', () => {
         io.emit('messege', 'user has left the chat')
     }) //run when client disconnects
-});
 
-socket.on('chat-messege', msg => {
+
+socket.on('chatMessege', msg => {
+    // const user = getCurrentUser(socket.id) //socket.id = current user id returning from DB
     io.emit('messege', msg)
     //render
 })
+});
 
 const PORT = 3000 || process.env.PORT;
 
-// app.use('/user', user);
-// app.use('/users', user);
-// app.use('/event', event);
-// app.use('/events', event);
-// app.use('/dog', dog);
-// app.use('/dogs', dog);
+app.use('/user', user);
+app.use('/users', user);
+app.use('/event', event);
+app.use('/events', event);
+app.use('/dog', dog);
+app.use('/dogs', dog);
 
 
 const port = 3000;
-server.listen(port, () => console.log(`Running server on port ${ port }`)); ////*************check the documentition/
+server.listen(port, () => console.log(`Running server on port ${port}`)); ////*************check the documentition/

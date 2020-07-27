@@ -1,7 +1,4 @@
 class Renderer {
-    renderMap = mapInfo => {
-        this.makeHandlebar("#map-template", "#map", mapInfo)
-    }
 
     renderAuthNav = user => {
         this.makeHandlebar("#authNav-template", '#navbar-container', user)
@@ -10,10 +7,45 @@ class Renderer {
     renderNonAuthNav = (string) => {
         this.makeHandlebar("#nonAuthNav-template", '#navbar-container', string)
     }
+
+    renderLandingPage = (string) => {
+        this.makeHandlebar("#home-template", '#main-container', string)
+    }
+
+    renderLogin = () => {
+        this.makeHandlebar("#login-template", '#main-container', null)
+    }
+
+    renderRegister = () => {
+        this.makeHandlebar("#register-template", '#main-container', null)
+    }
+
+    renderProfile = (user) => {
+        this.makeHandlebar("#profile-template", '#main-container', user)
+    }
+
+    renderEvent = (events) => {
+        this.makeHandlebar("#events-template", '#main-container', events)
+    }
+
+    renderEventForm = (events) => {
+        this.makeHandlebar("#eventsForm-template", '#main-container', events)
+    }
+    renderChatMessage =(msg) => {
+        this.makeHandlebarForChat("#message-template", '.chat-logs', msg)
+    }
 }
+
 Renderer.prototype.makeHandlebar = (templateId, containerId, data) => {
     const source = $(templateId).html();
     const template = Handlebars.compile(source);
     const newHTML = template(data);
     $(containerId).empty().append(newHTML);
+}
+
+Renderer.prototype.makeHandlebarForChat = (templateId, containerId, data) => {
+    const source = $(templateId).html();
+    const template = Handlebars.compile(source);
+    const newHTML = template(data);
+    $(containerId).append(newHTML);
 }
