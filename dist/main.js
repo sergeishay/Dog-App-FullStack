@@ -1,14 +1,15 @@
 const apiManager = new APIManager();
 const renderer = new Renderer();
+const geocoder = new google.maps.Geocoder();
 
-function loadScript() {
-    const script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDZAMd5ujixxcusvcP1f8SCsSVDcQaZp-o&callback=initMap';
-    script.defer = true;
-    script.async = true
-    document.body.appendChild(script)
-}
+// function loadScript() {
+//     const script = document.createElement("script");
+//     script.type = "text/javascript";
+//     script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDZAMd5ujixxcusvcP1f8SCsSVDcQaZp-o&callback=initMap';
+//     script.defer = true;
+//     script.async = true
+//     document.body.appendChild(script)
+// }
 
 const loadPage = () => {
     if (apiManager.checkAuthState()) {
@@ -63,16 +64,67 @@ $("#main-container").on("click", ".login-btn", function() {
 $("#navbar-container").on("click", ".profile", () => {
     renderer.renderProfile(apiManager.data.mainUser);
 });
-const mapDiv = document.getElementById('map')
+
+$("#main-container").on("click", ".profileEdit-btn", () => {
+    renderer.renderProfileForm();
+});
+
+$("#main-container").on("click", ".edit-profile", async function() {
+    const userPicture = $(this).siblings(".photo").find(".user-photo").val()
+    const firstName = $(this).siblings(".photo").find(".user-first").val()
+    const lastName = $(this).siblings(".photo").find(".user-last").val()
+    const radius = $(this).siblings(".distance").find(".user-radius").val()
+    const address = $(this).siblings(".distance").find(".user-location").val()
+    const aboutMe = $(this).siblings(".about").find(".user-about").val();
+
+    const dogPicture = $(this).siblings(".dogPhoto").find(".user-dog-photo").val();
+    const dogName = $(this).siblings(".dogPhoto").find(".user-dog-name").val();
+
+    let found = false;
+    for (let dog of apiManager.data.mainUser.dogs) {
+        if (dog.dogName === dogName) {
+            found = true;
+        }
+    }
+    if (!found) {
+        const breed = $(this).siblings(".dogPhoto").find(".user-dog-breed").val();
+        const weight = $(this).siblings(".weight").find(".user-dog-weight").val();
+        const favoriteTreat = $(this).siblings(".weight").find(".user-dog-treat").val();
+        const favoriteToy = $(this).siblings(".weight").find(".user-dog-toy").val();
+        const dog = { dogName, dogPicture, breed, weight, favoriteToy, favoriteTreat }
+        await apiManager.createNewDog(apiManager.data.mainUser._id, dog)
+    } else {
+        const breed = $(this).siblings(".dogPhoto").find(".user-dog-breed").val();
+        const weight = $(this).siblings(".weight").find(".user-dog-weight").val();
+        const favoriteTreat = $(this).siblings(".weight").find(".user-dog-treat").val();
+        const favoriteToy = $(this).siblings(".weight").find(".user-dog-toy").val();
+        const dog = { dogName, dogPicture, breed, weight, favoriteToy, favoriteTreat }
+        await apiManager.updateDog(await apiManager.data.mainUser.dogs.find(dog => dog.dogName === dogName)._id, dog);
+        $("#main-container").empty().append("<div id='map'></div>");
+        await apiManager.getAllNearbyUsers();
+        initMap();
+    }
+
+    if (address) {
+        geocoder.geocode({ address: address }, async function(result, status) {
+            const userLat = result[0].geometry.location.lat();
+            const userLon = result[0].geometry.location.lng();
+            const fullAddress = result[0].formatted_address.split(", ");
+            const city = fullAddress[0]
+            const country = fullAddress[1]
+            const info = { firstName, lastName, userPicture, radius, aboutMe, userLat, userLon, city, country };
+            await apiManager.updateUserProfile(apiManager.data.mainUser._id, info);
+            $("#main-container").empty().append("<div id='map'></div>");
+            await apiManager.getAllNearbyUsers();
+            initMap();
+        })
+    }
+    $("#main-container").empty().append("<div id='map'></div>");
+    await apiManager.getAllNearbyUsers();
+    initMap();
+})
 
 function initMap() {
-
-    // var script = document.createElement("script");
-    // script.type = "text/javascript";
-    // script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDZAMd5ujixxcusvcP1f8SCsSVDcQaZp-o";
-    // script.async = true;
-    // document.body.prepend(script);
-
 
     var map = new google.maps.Map(document.getElementById("map"), {
         streetViewControl: false,

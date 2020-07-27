@@ -42,6 +42,18 @@ class APIManager {
         });
     }
 
+    updateDog = (dogId, info) => {
+        $.ajax({
+            url: `/dog/${dogId}`,
+            method: "PUT",
+            data: info,
+            success: newDog => {
+                const oldDogIndex = this.data.mainUser.dogs.findIndex(dog => dog._id === dogId);
+                this.data.mainUser.dogs.splice(oldDogIndex, 1, newDog);
+            }
+        })
+    }
+
     checkAuthState = () => {
         if (localStorage.getItem("user")) {
             return true;
