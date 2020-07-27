@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
+const moment = require('moment');
 const bodyParser = require("body-parser");
 const path = require("path")
 const http = require('http');
 const express = require('express');
 const socketio = require('socket.io');
 const app = express();
-// const moment = require('moment')
 const user = require('./server/routes/user');
 const event = require('./server/routes/event');
 const dog = require('./server/routes/dog');
@@ -21,22 +21,21 @@ app.use(bodyParser.urlencoded({ extended: false }))
 io.on('connection', socket => {
     console.log('New WS Connection...');
 
-    socket.emit('messege', 'welcome to chatCord') // for a specific client
+    socket.broadcast.emit('bla', 'welcome to chatCord') // for a specific client
 
-    socket.broadcast.emit('messege', 'a user has join') // for all clients except the one which is on
+    // socket.broadcast.emit('messege', 'a user has join') // for all clients except the one which is on
 
-    io.emit() //for  all the clients
+    // io.emit() //for  all the clients
 
     socket.on('disconnect', () => {
-        io.emit('messege', 'user has left the chat')
+        io.emit('blabla', 'user has left the chat')
     }) //run when client disconnects
 
 
-socket.on('chatMessege', msg => {
-    // const user = getCurrentUser(socket.id) //socket.id = current user id returning from DB
-    io.emit('messege', msg)
-    //render
-})
+    socket.on('chatMessage', msg => {
+        // const user = getCurrentUser(socket.id) //socket.id = current user id returning from DB
+        io.emit('messege', msg)
+    })
 });
 
 const PORT = 3000 || process.env.PORT;

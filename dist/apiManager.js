@@ -3,7 +3,8 @@ class APIManager {
         this.data = {
             mainUser: {},
             users: [],
-            events: []
+            events: [],
+            messages:[]
         };
     }
     getMainUserById = async userId => {

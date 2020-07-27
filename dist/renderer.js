@@ -32,27 +32,22 @@ class Renderer {
         this.makeHandlebar("#eventsForm-template", '#main-container', events)
     }
 
-    renderChatMessage =(msg) => {
-        this.makeHandlebarForChat("#message-template", '.chat-logs', msg)
-    }
-
-    
     renderProfileForm = () => {
-        this.makeHandlebar("profileEdit-template", '#main-container', null)
+        this.makeHandlebar("#profileEdit-template", '#main-container', null)
 
+    }
+
+    renderChatMessage = (msg) => {
+        this.makeHandlebar("#message-template", '.chat-logs', msg, true)
     }
 }
 
-Renderer.prototype.makeHandlebar = (templateId, containerId, data) => {
-    const source = $(templateId).html();
-    const template = Handlebars.compile(source);
-    const newHTML = template(data);
-    $(containerId).empty().append(newHTML);
-}
+    Renderer.prototype.makeHandlebar = (templateId, containerId, data, bool) => {
+        if(!bool) $(containerId).empty()
+        const source = $(templateId).html();
+        const template = Handlebars.compile(source);
+        console.log(data)
+        const newHTML = template(data);
+        $(containerId).append(newHTML);
+    }
 
-Renderer.prototype.makeHandlebarForChat = (templateId, containerId, data) => {
-    const source = $(templateId).html();
-    const template = Handlebars.compile(source);
-    const newHTML = template(data);
-    $(containerId).append(newHTML);
-}
