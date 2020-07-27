@@ -28,8 +28,7 @@ router.get('/:userId/dogs', function(req, res) {
 
 router.post('/', function(req, res) {
     const newUser = new User(req.body)
-    newUser.save()
-    res.send(newUser)
+    newUser.save().then(user => res.send(user))
 })
 
 router.put('/:userId', function(req, res) {
