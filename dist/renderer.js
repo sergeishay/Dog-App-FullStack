@@ -24,7 +24,7 @@ class Renderer {
         this.makeHandlebar("#profile-template", '#main-container', user)
     }
 
-    renderEvent = (events) => {
+    renderEvents = (events) => {
         this.makeHandlebar("#events-template", '#main-container', events)
     }
 
@@ -44,12 +44,10 @@ class Renderer {
         this.makeHandlebar("#profileEdit-template", '#main-container', user)
     }
 }
-    Renderer.prototype.makeHandlebar = (templateId, containerId, data, bool) => {
+Renderer.prototype.makeHandlebar = (templateId, containerId, data, bool) => {
     if (!bool) $(containerId).empty()
     const source = $(templateId).html();
     const template = Handlebars.compile(source);
     const newHTML = template(data);
     $(containerId).append(newHTML);
 }
-
-
