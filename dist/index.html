@@ -241,7 +241,9 @@
             {{#each events}}
 
             <li class=>
-                <div class="collapsible-header "><img class='event-picture' src="{{eventPicture}}" alt=""><div class='event-name'>{{eventOwner.firstName}}{{eventOwner.lastName}}</div></div>
+                <div class="collapsible-header "><img class='event-picture' src="{{eventPicture}}" alt="">
+                    <div class='event-name'>{{eventOwner.firstName}} {{eventOwner.lastName}}</div>
+                </div>
                 <div class="event-info collapsible-body">
                     <div class="event-info card-action right-align"><a class="event-add btn-floating btn-tiny waves-effect waves-light"><i
                                 class="join material-icons">add</i></a></div>
@@ -253,7 +255,7 @@
                 </div>
                 <div class='other-attend'>
                     {{#each participations}}
-                        <div class='participant'>{{firstName lastName}}</div>
+                    <div class='participant'>{{firstName lastName}}</div>
                     {{/each}}
                 </div>
             </li>
