@@ -7,7 +7,7 @@ const eventsSchema = new Schema({
     startTime: String,
     endTime: String,
     eventDate: Date,
-    participations: [{ type: Schema.Types.ObjectId, ref: 'Dogs' }],
+    participations: [{ type: Schema.Types.ObjectId, ref: 'User' }],
     type: String,
     created: false,
     eventPicture: String,
