@@ -239,8 +239,7 @@
     <script id="events-template" type="text/x-handlebars-template">
         <ul class="collapsible">
             {{#each events}}
-
-            <li class=>
+            <li class="{{_id}}">
                 <div class="collapsible-header "><img class='event-picture' src="{{eventPicture}}" alt="">
                     <div class='event-name'>{{eventName}}</div>
                 </div>
@@ -260,7 +259,11 @@
                     <div class='other-attend'>
                     <div class='white' style='font-weight: bold; font-size: 15;'>Participants:</div>
                     {{#each participations}}
+<<<<<<< HEAD
                     <span class='participant'>{{firstName lastName}}</span>
+=======
+                    <div class='participant'>{{firstName}} {{lastName}}</div>
+>>>>>>> master
                     {{/each}}
                 </div>
                 </div>
