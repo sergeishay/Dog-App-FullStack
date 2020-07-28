@@ -4,7 +4,7 @@ const Events = require('../models/Event')
 const User = require('../models/User')
 
 router.get('/', function(req, res) {
-    Events.find({}).populate("participations").exec(function(err, events) {
+    Events.find({}).populate("participations eventOwner").exec(function(err, events) {
         if (err) res.send(err)
         else res.send(events)
     })
@@ -21,6 +21,7 @@ router.get('/:eventId', function(req, res) {
 router.post('/', function(req, res) {
     const event = new Events(req.body)
     event.save()
+    res.end()
 })
 
 router.put('/:eventId', function(req, res) {
