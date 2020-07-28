@@ -915,15 +915,19 @@ h6 {
 .event-name{
     display: inline-block;
     bottom: 20px;
-    padding-left: 20px;
+    padding-left: 15px;
     position: relative;
+    font-size: 31px;
     color: #1abc9c;
-    width: 103;
 }
-
 .event-info{
     padding-left: 20px;
     padding-bottom: 13px;
+}
+
+.event-column{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 .event-create{
