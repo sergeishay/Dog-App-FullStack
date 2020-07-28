@@ -4,7 +4,7 @@ class APIManager {
             mainUser: {},
             users: [],
             events: [],
-            messages:[],
+            messages: [],
             otherUser: {},
         };
     }
@@ -18,7 +18,7 @@ class APIManager {
         this.data.mainUser = await $.post("/user", user);
     }
     createNewEvent = async event => {
-        this.data.events.push(await $.post("/event", event))
+        await $.post("/event", event)
     }
     createNewDog = async(userId, dog) => {
         await $.post(`/dog/${userId}`, dog);

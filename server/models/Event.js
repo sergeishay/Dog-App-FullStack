@@ -3,10 +3,11 @@ const Schema = mongoose.Schema
 
 const eventsSchema = new Schema({
     eventName: String,
-    eventOwner: [{type: Schema.Types.ObjectId, ref: 'User'}],
-    startTime: Number,
-    endTime: Number,
-    participations:[{type: Schema.Types.ObjectId, ref: 'Dogs'}],
+    eventOwner: { type: Schema.Types.ObjectId, ref: 'User' },
+    startTime: String,
+    endTime: String,
+    eventDate: Date,
+    participations: [{ type: Schema.Types.ObjectId, ref: 'Dogs' }],
     type: String,
     created: false,
     eventPicture: String,

@@ -238,7 +238,7 @@
     <!-- EVENTS PAGE ----------------------------------------------------------------------------------------------------->
     <script id="events-template" type="text/x-handlebars-template">
         <ul class="collapsible">
-            {{#each event}}
+            {{#each events}}
             <li>
                 <div class="collapsible-header"><i class="material-icons">filter_drama</i>{{eventName}}</div>
                 <div class="collapsible-body">
@@ -342,14 +342,14 @@
                 </div>
                 <div class="input-field col l3 m3 s6">
                     <label>Start Time</label><br>
-                    <input class='event-start' type="time" name="appt" min="09:00" max="18:00" required>
+                    <input class='event-start' type="time" name="appt" required>
                 </div>
                 <div class="input-field col l3 m3 s6">
                     <label>End Time</label><br>
-                    <input class='event-end' type="time" name="appt" min="09:00" max="18:00" required>
+                    <input class='event-end' type="time" name="appt" required>
                 </div>
             </div>
-            <div class="row descrition">
+            <div class="row description">
                 <div class="input-field col s12">
                     <input class="event-description validate" placeholder='Describe your event' type="text">
                 </div>
