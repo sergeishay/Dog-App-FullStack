@@ -36,15 +36,11 @@ io.on('connection', socket => {
 
     socket.on('chatMessage', msg => {
         let message = new Message(msg)
-        console.log(msg)
-        message.save().then(newlyMessage => {
-        }).catch(err => {
-            console.log(err)
-        })
+        message.save();
         io.emit('messege', msg)
     })
 
-   
+
 });
 
 const PORT = 3000 || process.env.PORT;
