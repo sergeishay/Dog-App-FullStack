@@ -4,8 +4,7 @@ class APIManager {
             mainUser: {},
             users: [],
             events: [],
-            messages:[],
-            otherUser: {},
+            otherUser: {}
         };
     }
     getMainUserById = async userId => {
