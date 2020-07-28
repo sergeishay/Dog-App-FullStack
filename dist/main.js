@@ -131,15 +131,18 @@ $("#main-container").on("click", ".map-profile", async function() {
     renderer.renderProfile(apiManager.data.otherUser);
 })
 
-$("#navbar-container").on("click", ".events", () => {
-    renderer.renderEvents(apiManager.data.mainUser.event)
+$("#navbar-container").on("click", ".events", async() => {
+    await apiManager.getAllEvents();
+    const events = { events: apiManager.data.events }
+    console.log(events)
+    renderer.renderEvents(events)
 });
 
-$("#main-container").on("click", ".evnet-submit", async function() {
+$("#main-container").on("click", ".event-submit", async function() {
     const eventName = $(this).siblings(".title").find("input").val();
-    const eventPicture = $(this).siblings(".picture").find("input").val();
-    const type = $(this).siblings(".picutre").find("input").val();
-    const address = $(this).siblings(".organizer").find("input").val();
+    const eventPicture = $(this).siblings(".photo").find(".event-photo").val();
+    const type = $(this).siblings(".photo").find(".event-type").val();
+    const address = $(this).siblings(".location").find("input").val();
     const eventDate = $(this).siblings(".date").find(".event-date").val();
     const startTime = $(this).siblings(".date").find(".event-start").val();
     const endTime = $(this).siblings(".date").find(".event-end").val();
