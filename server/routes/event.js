@@ -24,10 +24,11 @@ router.post('/', function(req, res) {
     res.end()
 })
 
-router.put('/:eventId', function(req, res) {
+router.put('/:eventId', async function(req, res) {
     const { eventId } = req.params
     const user = req.body
-    Events.findByIdAndUpdate(eventId, { $push: { participations: user } })
+    await Events.findByIdAndUpdate(eventId, { $push: { participations: user } })
+    res.end();
 })
 
 router.delete('/:eventId', function(req, res) {

@@ -39,7 +39,7 @@ class APIManager {
             }
         });
     }
-    joinEvent = async(eventId, user) => {
+    joinEvent = (eventId, user) => {
         $.ajax({
             url: `/event/${eventId}`,
             method: "PUT",
