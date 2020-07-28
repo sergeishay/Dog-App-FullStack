@@ -905,7 +905,7 @@ h6 {
     margin-left: auto;
     margin-right: auto;
     object-fit: cover;
-    width: auto;
+    width: 103;
     top: 22px;
     position: relative;
     height: 103px;
@@ -918,7 +918,7 @@ h6 {
     padding-left: 20px;
     position: relative;
     color: #1abc9c;
-    font-size: 36px;
+    width: 103;
 }
 
 .event-info{
