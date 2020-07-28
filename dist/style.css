@@ -890,5 +890,58 @@ h6 {
     background-color: transparent;
     transition: all 0.2s ease-in-out;
   }
+/* EVENT PAGE ---------------------------------------------------------------*/
+.event-add{
+    position: relative;
+    right: 8px;
+    top: 9px;
+}
 
-  
+.collapsible-header{
+    line-height: 7rem;
+}
+
+.event-picture{
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: cover;
+    width: auto;
+    top: 22px;
+    position: relative;
+    height: 103px;
+    border: 8px solid #f5f5f5;
+}
+
+.event-name{
+    display: inline-block;
+    bottom: 20px;
+    padding-left: 20px;
+    position: relative;
+    color: #1abc9c;
+    font-size: 36px;
+}
+
+.event-info{
+    padding-left: 20px;
+    padding-bottom: 13px;
+}
+
+.event-create{
+    border: 2px solid #16a085;
+    color: #16a085;
+    font-family: 'Roboto', Segoe UI, calibri, Helvetica, serif;
+    font-size: 13px;
+    top: 264px;
+    left: 10px;
+    width: 153px;
+    margin-right: 7px;
+    position: inherit;
+    border-radius: 413px;
+    cursor: pointer;
+    background-color: transparent;
+    transition: all 0.2s ease-in-out;
+}
+
+.event-time{
+    font-weight: bold;
+}
