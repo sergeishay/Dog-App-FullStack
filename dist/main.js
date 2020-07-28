@@ -154,9 +154,11 @@ $("#main-container").on("click", ".event-submit", async function() {
     renderer.renderEvents(apiManager.data.events);
 })
 
-$("#main-container").on("click", ".join", function() {
+$("#main-container").on("click", ".join", async function() {
     const eventId = $(this).closest("li").attr("class");
-    apiManager.joinEvent(eventId, apiManager.data.mainUser)
+    await apiManager.joinEvent(eventId, apiManager.data.mainUser);
+    await apiManager.getAllEvents()
+    renderer.renderEvents(apiManager.data.events)
 })
 
 function initMap() {
