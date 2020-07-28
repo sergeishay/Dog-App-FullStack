@@ -239,11 +239,11 @@
     <script id="events-template" type="text/x-handlebars-template">
         <ul class="collapsible">
             {{#each events}}
-            <li>
+            <li class="{{_id}}">
                 <div class="collapsible-header"><i class="material-icons">filter_drama</i>{{eventName}}</div>
                 <div class="collapsible-body">
                     <div class="card-action right-align"><a class="event-add btn-floating btn-tiny waves-effect waves-light red"><i
-                                class="material-icons">add</i></a></div>
+                                class="join material-icons">add</i></a></div>
                     <div>{{startTime}} - {{endTime}}</div>
                     <div>{{type}}</div>
                     <div>{{address}}</div>

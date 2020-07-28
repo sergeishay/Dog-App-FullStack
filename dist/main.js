@@ -146,11 +146,17 @@ $("#main-container").on("click", ".event-submit", async function() {
     const eventDate = $(this).siblings(".date").find(".event-date").val();
     const startTime = $(this).siblings(".date").find(".event-start").val();
     const endTime = $(this).siblings(".date").find(".event-end").val();
-    const description = $(this).siblings(".description").find("input").val()
-    const newlyCreatedEvent = { eventName, eventPicture, type, address, eventDate, startTime, endTime, description };
-    await apiManager.createNewEvent(newlyCreatedEvent)
+    const description = $(this).siblings(".description").find("input").val();
+    const eventOwner = apiManager.data.mainUser
+    const newlyCreatedEvent = { eventName, eventPicture, type, address, eventDate, startTime, endTime, description, eventOwner };
+    await apiManager.createNewEvent(newlyCreatedEvent, apiManager.data.mainUser._id)
     await apiManager.getAllEvents();
-    renderer.renderEvents(apiManager.data.events)
+    renderer.renderEvents(apiManager.data.events);
+})
+
+$("#main-container").on("click", ".join", function() {
+    const eventId = $(this).closest("li").attr("class");
+    apiManager.joinEvent(eventId, apiManager.data.mainUser)
 })
 
 function initMap() {
