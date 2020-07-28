@@ -8,13 +8,11 @@ router.get('/', function(req, res) {
         else res.send(users)
     })
 })
-
 router.get('/:userId', async function(req, res) {
     const { userId } = req.params
     const user = await User.findById(userId).populate("dogs").exec();
     res.send(user)
 })
-
 router.get('/:userId/dogs', function(req, res) {
     const { userId } = req.params
     User.findById(userId).populate("dogs")
@@ -23,12 +21,10 @@ router.get('/:userId/dogs', function(req, res) {
             else res.send(user.dogs)
         })
 })
-
 router.post('/', function(req, res) {
     const newUser = new User(req.body)
     newUser.save().then(user => res.send(user))
 })
-
 router.put('/:userId', async function(req, res) {
     const { userId } = req.params
     const info = req.body
@@ -39,7 +35,6 @@ router.put('/:userId', async function(req, res) {
             else res.send(user)
         })
 })
-
 router.delete('/:userId', function(req, res) {
     const { userId } = req.params
     User.findByIdAndDelete(userId, function(err, user) {
@@ -47,5 +42,4 @@ router.delete('/:userId', function(req, res) {
         else res.send(`${user.firstName} ${user.lastName} has deleted successfully`)
     })
 })
-
 module.exports = router

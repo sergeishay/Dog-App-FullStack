@@ -3,6 +3,7 @@ const renderer = new Renderer();
 const socket = io();
 const geocoder = new google.maps.Geocoder();
 
+
 const loadPage = async() => {
     if (apiManager.checkAuthState()) {
         const user = JSON.parse(localStorage.getItem("user"))
@@ -220,7 +221,6 @@ function initMap() {
 
 socket.on('messege', message => {
     renderer.renderChatMessage(message)
-    apiManager.data.messages.push(message)
 })
 
 function ck() {
@@ -230,7 +230,7 @@ function ck() {
     const input = $("#chat-input").val()
     const time = moment().format('LTS')
     const messageObj = {
-        id: id,
+        userId: id,
         name: name,
         input: input,
         time: time
