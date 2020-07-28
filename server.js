@@ -15,7 +15,7 @@ const Message = require('./server/models/Message');
 const server = http.createServer(app);
 const io = socketio(server);
 
-mongoose.connect("mongodb://localhost/dog-app", { useFindAndModify: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb+srv://MayheMatan:Mayhematan123@cluster0-cp7uu.mongodb.net/<Dogs-app>?retryWrites=true&w=majority", { useFindAndModify: true });
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use(express.static(path.join(__dirname, 'node_modules')));
 app.use(bodyParser.json())
@@ -36,18 +36,14 @@ io.on('connection', socket => {
 
     socket.on('chatMessage', msg => {
         let message = new Message(msg)
-        console.log(msg)
-        message.save().then(newlyMessage => {
-        }).catch(err => {
-            console.log(err)
-        })
+        message.save();
         io.emit('messege', msg)
     })
 
-   
+
 });
 
-const PORT = 3000 || process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 app.use('/user', user);
 app.use('/users', user);
