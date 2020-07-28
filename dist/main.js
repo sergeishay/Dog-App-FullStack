@@ -15,8 +15,13 @@ const loadPage = async() => {
     renderer.renderLandingPage()
 }
 
-$("#navbar-container").on("click", ".events", () => {
-    renderer.renderEvent(apiManager.data.mainUser.event);
+$("#navbar-container").on("click", ".events", async() => {
+    await apiManager.getAllEvents()
+    renderer.renderEvents(apiManager.data.events);
+});
+
+$("#main-container").on("click", ".event-create", () => {
+    renderer.renderEventForm()
 })
 
 $("#navbar-container").on("click", ".logout", () => {
@@ -127,8 +132,34 @@ $("#main-container").on("click", ".map-profile", async function() {
     renderer.renderProfile(apiManager.data.otherUser);
 })
 
-$("#navbar-container").on("click", ".events", () => {
-    renderer.renderEvents(apiManager.data.mainUser.event)
+$("#navbar-container").on("click", ".events", async() => {
+    await apiManager.getAllEvents();
+    const events = { events: apiManager.data.events }
+    console.log(events)
+    renderer.renderEvents(events)
+});
+
+$("#main-container").on("click", ".event-submit", async function() {
+    const eventName = $(this).siblings(".title").find("input").val();
+    const eventPicture = $(this).siblings(".photo").find(".event-photo").val();
+    const type = $(this).siblings(".photo").find(".event-type").val();
+    const address = $(this).siblings(".location").find("input").val();
+    const eventDate = $(this).siblings(".date").find(".event-date").val();
+    const startTime = $(this).siblings(".date").find(".event-start").val();
+    const endTime = $(this).siblings(".date").find(".event-end").val();
+    const description = $(this).siblings(".description").find("input").val();
+    const eventOwner = apiManager.data.mainUser._id
+    const newlyCreatedEvent = { eventName, eventPicture, type, address, eventDate, startTime, endTime, description, eventOwner };
+    await apiManager.createNewEvent(newlyCreatedEvent, apiManager.data.mainUser._id)
+    await apiManager.getAllEvents();
+    renderer.renderEvents(apiManager.data.events);
+})
+
+$("#main-container").on("click", ".join", async function() {
+    const eventId = $(this).closest("li").attr("class");
+    await apiManager.joinEvent(eventId, apiManager.data.mainUser);
+    await apiManager.getAllEvents()
+    renderer.renderEvents(apiManager.data.events)
 })
 
 function initMap() {
@@ -153,7 +184,7 @@ function initMap() {
             position: new google.maps.LatLng(apiManager.data.users[i].userLat, apiManager.data.users[i].userLon),
             map: map,
             title: apiManager.data.users[i].dogs[0].dogName,
-            icon: "assets/download1.png"
+            icon: "assets/pawMap.png"
         })
 
         let contentString =

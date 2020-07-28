@@ -1,5 +1,4 @@
-/* NAV BAR -----------------------------------------------------------------*/
-
+/* NAV BAR ----------------------------------------------------------------------------------------------------------*/
 html,
 body {
     height: 100%;
@@ -9,6 +8,19 @@ body {
 }
 ::-webkit-scrollbar {
     display: none;
+}
+
+.nav-user-name{
+    position: relative;
+    top: 50px;
+    width: 100%;
+    right: 23px;
+    font-size: 22px;
+}
+
+.top-nav-area{
+    background-color: #1abc9c;
+    height: 164px;
 }
 
 #content {
@@ -41,10 +53,11 @@ body {
 }
 
 .side-picture {
-    height: 100px;
-    width: 102px;
+    height: 121px;
+    width: 121px;
+    left: 5px;
     position: absolute;
-    margin-top: 12px;
+    margin-top: 5px;
     border: white 2px solid;
 }
 
@@ -149,7 +162,7 @@ nav{
       font-size: 28px;
     }
   }
-/* LOG-IN PAGE---------------------------------------------------------------- */
+/* LOG-IN PAGE-------------------------------------------------------------------------------------------------------- */
 
 h5 {
     font-weight: 400;
@@ -210,13 +223,11 @@ h5 {
 .register:active{
     background-color: #1abc9c;
 }
-/* MAP PAGE -------------------------------------------------------------------*/
-
-
+/* MAP PAGE ----------------------------------------------------------------------------------------------------------*/
 .iw-name {
-    top: -52px;
-    right: -87px;
-    font-size: 34px;
+    top: 32px;
+    right: 4px;
+    font-size: 31px;
     position: relative;
 }
 
@@ -229,7 +240,7 @@ h5 {
     overflow-x: hidden !important;
     background-color: #fff;
     box-shadow: 0 1px 6px rgba(178, 178, 178, 0.6);
-    border: 1px solid rgba(72, 181, 233, 0.6);
+    border: 1px solid #16a085;
     border-radius: 2px 2px 10px 10px;
 }
 .gm-style-iw {
@@ -241,7 +252,7 @@ h5 {
     overflow-x: hidden !important;
     background-color: #fff;
     box-shadow: 0 1px 6px rgba(178, 178, 178, 0.6);
-    border: 1px solid rgba(72, 181, 233, 0.6);
+    border: 1px solid #16a085;
     border-radius: 2px 2px 10px 10px;
 }
 #iw-container {
@@ -255,7 +266,7 @@ h5 {
     font-weight: 400;
     height: 70px;
     padding: 5px;
-    background-color: #48b5e9;
+    background-color: #16a085;
     color: white;
     margin: 0;
     border-radius: 2px 2px 0 0;
@@ -284,15 +295,16 @@ h5 {
 }
 
 .iw-subTitle {
-    font-size: 34px;
+    font-size: 29px;
     font-weight: 700;
     position: relative;
-    bottom: 8px;
+    bottom: 10px;
     right: 10px;
     padding: 5px 0;
     overflow-y: hidden !important;
     overflow-x: hidden !important;
-    color: rgba(72, 181, 233, 0.6);
+    color: #16a085;
+
 }
 
 .iw-moreinfo{
@@ -313,8 +325,8 @@ h5 {
     font-weight: bold;
     font-size: 17px;
     border-radius: 20px;
-    color: rgba(72, 181, 233, 0.6);
-    border: 3px solid rgba(72, 181, 233, 0.6);
+    color: #16a085;
+    border: 3px solid #16a085;
 }
 
 #map {
@@ -334,7 +346,7 @@ h5 {
     object-fit: cover;
 }
 
-/* USER PROFILE PAGE ----------------------------------------------------------*/
+/* USER PROFILE PAGE ---------------------------------------------------------------------------------------------------*/
 
 .profileEdit-btn {
         border: 2px solid white;
@@ -342,7 +354,7 @@ h5 {
         font-family: 'Roboto', Segoe UI, calibri, Helvetica, serif;
         font-size: 13px;
         top: 172px;
-        width: 149px;
+        width: 151px;
         position: absolute;
         border-radius: 413px;
         cursor: pointer;
@@ -371,6 +383,23 @@ h5 {
 .profile-container {
     top: 93px;
     position: relative;
+}
+
+@media screen and (max-width: 601px) {
+    .profileEdit-btn{
+    border: 2px solid #16a085;
+    color: #16a085;
+    font-family: 'Roboto', Segoe UI, calibri, Helvetica, serif;
+    font-size: 13px;
+    top: 264px;
+    left: 10px;
+    width: 126px;
+    position: absolute;
+    border-radius: 413px;
+    cursor: pointer;
+    background-color: transparent;
+    transition: all 0.2s ease-in-out;
+    }
 }
 
 @media screen and (min-width: 601px) {
@@ -444,7 +473,7 @@ h5 {
 
 .profile-dog-name {
     text-align: right;
-    bottom: 88px;
+    bottom: 112px;
     font-size: 25px;
     z-index: 1;
     position: relative;
@@ -460,7 +489,7 @@ p {
 }
 
 
-/* -------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------- */
 
 
 /* CHAT BOX*/
@@ -478,6 +507,14 @@ body {
     justify-content: center;
     align-items: center;
     height: 100%;
+}
+
+.send{
+    cursor: pointer;
+    font-size: 43px;
+    position: relative;
+    bottom: 22px;
+    right: 2px;
 }
 
 @media screen and (min-width: 601px) {
@@ -562,8 +599,8 @@ body {
     border-top-right-radius: 5px;
     color: white;
     text-align: center;
-    font-size: 20px;
-    padding-top: 17px;
+    font-size: 35px;
+    padding-top: 10px;
 }
 
 .chat-box-body {
@@ -767,12 +804,12 @@ body {
 @media screen and (min-width: 601px) {
     .radius {
         position: relative;
-        left: 9px;
         top: 36px;
         display: inline-block;
         font-size: 15px;
         text-align: -webkit-right;
         color: gray;
+        width: 100%;
     }
 }
 
@@ -813,4 +850,98 @@ h6 {
 
 .confirmation-tabs-btn {
     position: absolute;
+}
+
+/* EVENT FORM-------------------------------------------------------------------------------------- */
+/* body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #16a085;
+  } */
+  h1 {
+    margin: 0 0 0.25em;
+  }
+  /* Reset Select */
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    outline: 0;
+    box-shadow: none;
+    border: 0 !important;
+    background: #2c3e50;
+    background-image: none;
+  }
+  .event-submit{
+    border: 2px solid #16a085;
+    color: #16a085;
+    font-family: 'Roboto', Segoe UI, calibri, Helvetica, serif;
+    font-size: 13px;
+    top: 264px;
+    left: 10px;
+    width: 126px;
+    position: inherit;
+    border-radius: 413px;
+    cursor: pointer;
+    background-color: transparent;
+    transition: all 0.2s ease-in-out;
+  }
+/* EVENT PAGE ---------------------------------------------------------------*/
+.event-add{
+    position: relative;
+    right: 8px;
+    top: 9px;
+}
+
+.collapsible-header{
+    line-height: 7rem;
+}
+
+.event-picture{
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: cover;
+    width: 103;
+    top: 22px;
+    position: relative;
+    height: 103px;
+    border: 8px solid #f5f5f5;
+}
+
+.event-name{
+    display: inline-block;
+    bottom: 20px;
+    padding-left: 20px;
+    position: relative;
+    color: #1abc9c;
+    width: 103;
+}
+
+.event-info{
+    padding-left: 20px;
+    padding-bottom: 13px;
+}
+
+.event-create{
+    border: 2px solid #16a085;
+    color: #16a085;
+    font-family: 'Roboto', Segoe UI, calibri, Helvetica, serif;
+    font-size: 13px;
+    top: 264px;
+    left: 10px;
+    width: 153px;
+    margin-right: 7px;
+    position: inherit;
+    border-radius: 413px;
+    cursor: pointer;
+    background-color: transparent;
+    transition: all 0.2s ease-in-out;
+}
+
+.event-time{
+    font-weight: bold;
 }

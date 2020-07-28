@@ -4,7 +4,9 @@ class APIManager {
             mainUser: {},
             users: [],
             events: [],
+
             otherUser: {}
+
         };
     }
     getMainUserById = async userId => {
@@ -17,7 +19,7 @@ class APIManager {
         this.data.mainUser = await $.post("/user", user);
     }
     createNewEvent = async event => {
-        this.data.events.push(await $.post("/event", event))
+        await $.post(`/event`, event)
     }
     createNewDog = async(userId, dog) => {
         await $.post(`/dog/${userId}`, dog);
@@ -38,11 +40,11 @@ class APIManager {
             }
         });
     }
-    joinEvent = async eventId => {
+    joinEvent = async(eventId, user) => {
         $.ajax({
             url: `/event/${eventId}`,
             method: "PUT",
-            data: this.mainUser
+            data: user
         });
     }
 

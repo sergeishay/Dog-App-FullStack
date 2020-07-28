@@ -36,10 +36,12 @@
                     <li><a class='logout'>Logout</a></li>
                 </ul>
                 <ul id="mobile-demo" class="side-nav">
-                    <li>
+                    <li class='top-nav-area'>
                         <div class="user-view">
                             <a><img class="circle side-picture" src="{{userPicture}}"></a>
-                            <a><span class="white-text">{{firstName}} {{lastName}}</span></a>
+                            <a>
+                                <div class="white-text nav-user-name">{{firstName}} {{lastName}}</div>
+                            </a>
                         </div>
                     </li>
                     <li><a class="profile waves-effect">Profile</a></li>
@@ -200,7 +202,7 @@
             {{/unless}}
         </div>
         </div>
-    
+
         <!-- CHAT------------------------------------------------------------------ -->
         <div id="body">
             <div id="chat-circle" class="large btn btn-raised">
@@ -209,7 +211,7 @@
             </div>
             <div class="chat-box">
                 <div class="chat-box-header">
-                    Chat
+                    Chat&nbsp&nbsp&nbsp<i class="fas fa-paw"></i>
                     <span class="chat-box-toggle"><i class="material-icons">close</i></span>
                 </div>
                 <div class="chat-box-overlay"></div>
@@ -217,8 +219,8 @@
                 <div class="chat-input">
                     <form class="idForm">
                         <input id="chat-input" type="text" placeholder="Send a message..." />
-                        <div class="chat-submit" onclick="ck(this)" >
-                        <i class="material-icons">send</i>
+                        <div class="chat-submit" onclick="ck(this)">
+                            <i class="material-icons send">send</i>
                         </div>
                     </form>
                 </div>
@@ -228,7 +230,7 @@
 
     <script id="message-template" type="text/x-handlebars-template">
         <div class="message">
-             <p>
+            <p>
                 <span class="message">{{time}}:{{name}}: {{input}}</span>
             </p>
         </div>
@@ -236,44 +238,30 @@
     <!-- EVENTS PAGE ----------------------------------------------------------------------------------------------------->
     <script id="events-template" type="text/x-handlebars-template">
         <ul class="collapsible">
-            <li>
-                <div class="collapsible-header"><i class="material-icons">filter_drama</i>DOG PARK MEETUP</div>
-                <div class="collapsible-body">
-                    <div class="card-action right-align"><a class="event-add btn-floating btn-tiny waves-effect waves-light red"><i
-                                class="material-icons">add</i></a></div>
-                    <div>09:00 - 12:00</div>
-                    <div>Dog park near house</div>
-                    <div>Dog park party!</div>
-                    <span>This is a description This is a description This is a description This is a description This
-                                is a description This is a description This is a description This is a description </span>
+            {{#each events}}
+
+            <li class=>
+                <div class="collapsible-header "><img class='event-picture' src="{{eventPicture}}" alt="">
+                    <div class='event-name'>{{eventOwner.firstName}} {{eventOwner.lastName}}</div>
+                </div>
+                <div class="event-info collapsible-body">
+                    <div class="event-info card-action right-align"><a class="event-add btn-floating btn-tiny waves-effect waves-light"><i
+                                class="join material-icons">add</i></a></div>
+                    <div class='event-time'>{{startTime}}am - {{endTime}}pm</div>
+
+                    <div>{{type}}</div>
+                    <div>{{address}}</div>
+                    <span>{{description}}</span>
+                </div>
+                <div class='other-attend'>
+                    {{#each participations}}
+                    <div class='participant'>{{firstName lastName}}</div>
+                    {{/each}}
                 </div>
             </li>
-            <li>
-                <div class="collapsible-header"><i class="material-icons">filter_drama</i>DOG PARK MEETUP</div>
-                <div class="collapsible-body">
-                    <div class="card-action right-align"><a class="event-add btn-floating btn-tiny waves-effect waves-light red"><i
-                                    class="material-icons">add</i></a></div>
-                    <div>09:00 - 12:00</div>
-                    <div>Dog park near house</div>
-                    <div>Dog park party!</div>
-                    <span>This is a description This is a description This is a description This is a description This
-                            is a description This is a description This is a description This is a description </span>
-                </div>
-            </li>
-            <li>
-                <div class="collapsible-header"><i class="material-icons">filter_drama</i>DOG PARK MEETUP</div>
-                <div class="collapsible-body">
-                    <div class="card-action right-align"><a class="event-add btn-floating btn-tiny waves-effect waves-light red"><i
-                                    class="material-icons">add</i></a></div>
-                    <span>09:00 - 12:00</span>
-                    <span>Dog park near house</span>
-                    <span>Dog park party!</span>
-                    <span>This is a description This is a description This is a description This is a description This
-                            is a description This is a description This is a description This is a description </span>
-                </div>
-            </li>
+            {{/each}}
         </ul>
-        <a class="event-create waves-effect waves-light btn-large right">Submit</a>
+        <a class="event-create waves-effect waves-light btn-large right">Add Event</a>
     </script>
 
     <!-- PROFILE EDIT FORM ----------------------------------------------------------------------------- -->
@@ -296,10 +284,10 @@
                 <div class="input-field col l4 m4 s12">
                     <input class="user-location validate" placeholder="Location" type="text">
                 </div>
-                <div class="col l2 m2 s6">
+                <div class="col l4 m4 s6">
                     <label class='radius' for="title">Max Meet-up Distance (m)</label>
                 </div>
-                <div class="input-field col l2 m2 s12">
+                <div class="input-field left col l2 m2 s12">
                     <input class="user-radius validate" value="300" type="number">
                 </div>
             </div>
@@ -338,59 +326,41 @@
     <script id="eventsForm-template" type="text/x-handlebars-template">
         <div id='container'>
             <h6>Create your event</h6>
-            <div class="row">
+            <div class="row title">
                 <div class="input-field col s12">
                     <input class="event-title event-input" placeholder="Event title" type="text">
-                    <label for="title">Title</label>
                 </div>
             </div>
-            <div class="row">
+            <div class="row photo">
                 <div class="input-field file-field col l6 m6 s12">
-                    <div class="btn">
-                        <span>Upload</span>
-                        <input type="file">
-                    </div>
-                    <div class="file-path-wrapper">
-                        <input class="event-photo file-path validate" type="text" placeholder="Add a photo!">
-                    </div>
+                    <input class="event-photo validate" placeholder="Picture URL here" type="text">
                 </div>
-                <div class="input-field col l6 m6 s12">
-                    <select>
-                    <option value=""></option>
-                    <option value="1">Birthday</option>
-                    <option value="2">Workout</option>
-                    <option value="3">Dog park</option>
-                    <option value="4">Holiday</option>
-                    <option value="5">Training</option>
-                    <option value="5">Group Walk</option>
-                </select>
-                    <label>Event type</label>
+                <div class=" select input-field col l6 m6 s12">
+                    <input class="event-type validate" placeholder="Event type (walk, birthday, training, etc)" type="text">
                 </div>
             </div>
-            <div class="row">
+            <div class="row location">
                 <div class="input-field col s12">
-                    <input class="event-location validate" placeholder="Who is organizing the event?" type="text">
-                    <label for="organizer">Location</label>
+                    <input class="event-location validate" placeholder="Event location" type="text">
                 </div>
             </div>
-            <div class="row">
+            <div class="row date">
                 <div class="input-field col l6 m6 s12">
                     <label>Date</label><br>
                     <input class="event-date datepicker" type="date">
                 </div>
                 <div class="input-field col l3 m3 s6">
                     <label>Start Time</label><br>
-                    <input class='event-start' type="time" name="appt" min="09:00" max="18:00" required>
+                    <input class='event-start' type="time" name="appt" required>
                 </div>
                 <div class="input-field col l3 m3 s6">
                     <label>End Time</label><br>
-                    <input class='event-end' type="time" name="appt" min="09:00" max="18:00" required>
+                    <input class='event-end' type="time" name="appt" required>
                 </div>
             </div>
-            <div class="row">
+            <div class="row description">
                 <div class="input-field col s12">
-                    <input class="event-description validate" type="text">
-                    <label for="organizer">Describe your event</label>
+                    <input class="event-description validate" placeholder='Describe your event' type="text">
                 </div>
             </div>
             </form>
@@ -417,11 +387,6 @@
     <script>
         $("#main-container").on("click", ".collapsible", function() {
             $(this).collapsible();
-        });
-    </script>
-    <script>
-        $("#main-container").on("click", ".collapsible", () => {
-            $('select').material_select();
         });
     </script>
     <script>
